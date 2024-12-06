@@ -7,31 +7,37 @@ const navList: {
   href: string
   label: string
   icon: ReactNode
+  disabled: boolean
 }[] = [
   {
     href: '/',
     label: 'Home',
-    icon: <Home size="1.3rem" strokeWidth={1.5} />
+    icon: <Home size="1.3rem" strokeWidth={1.5} />,
+    disabled: false
   },
   {
     href: '/about',
     label: 'About',
-    icon: <Info size="1.3rem" strokeWidth={1.5} />
+    icon: <Info size="1.3rem" strokeWidth={1.5} />,
+    disabled: true
   },
   {
     href: '/guide',
     label: 'Guide',
-    icon: <Book size="1.3rem" strokeWidth={1.5} />
+    icon: <Book size="1.3rem" strokeWidth={1.5} />,
+    disabled: true
   },
   {
     href: '/product',
     label: 'Products',
-    icon: <List size="1.3rem" strokeWidth={1.5} />
+    icon: <List size="1.3rem" strokeWidth={1.5} />,
+    disabled: false
   },
   {
     href: '/history',
     label: 'History',
-    icon: <CalendarClock size="1.3rem" strokeWidth={1.5} />
+    icon: <CalendarClock size="1.3rem" strokeWidth={1.5} />,
+    disabled: true
   }
 ]
 
@@ -47,8 +53,8 @@ export default function Navbar(): JSX.Element {
           to={nav.href}
           label={nav.label}
           leftSection={nav.icon}
-          // active={location.pathname.startsWith(nav.href)}
           active={location.pathname === nav.href}
+          disabled={nav.disabled}
         />
       ))}
     </>
