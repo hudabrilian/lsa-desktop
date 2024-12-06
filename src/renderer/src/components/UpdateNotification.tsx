@@ -7,7 +7,7 @@ export default function UpdateNotification(): JSX.Element {
   const [autoUpdateErrorMessage, setAutoUpdateErrorMessage] = useState<string | null>(null)
   const [showUpdateIsInstalling, setShowUpdateIsInstalling] = useState<boolean>(false)
   const [showUpdateIsDownloaded, setShowUpdateIsDownloaded] = useState<boolean>(false)
-  const [opened, { open, close }] = useDisclosure(true)
+  const [opened, { open, close }] = useDisclosure(false)
 
   useEffect(() => {
     window.api.updates.onUpdateAvailable(() => {
