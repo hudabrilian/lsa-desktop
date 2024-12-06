@@ -29,6 +29,7 @@ export function registerAutoUpdateListeners(mainWindow: Electron.BrowserWindow):
   })
 
   getAutoUpdater().addListener('update-downloaded', () => {
+    mainWindow.webContents.send('updateDownloaded')
     app.emit('before-quit')
     setTimeout(() => {
       getAutoUpdater().quitAndInstall()

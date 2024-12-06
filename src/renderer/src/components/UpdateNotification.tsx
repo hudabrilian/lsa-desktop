@@ -6,41 +6,66 @@ import { useEffect, useState } from 'react'
 export default function UpdateNotification(): JSX.Element {
   const [autoUpdateErrorMessage, setAutoUpdateErrorMessage] = useState<string | null>(null)
   const [showUpdateIsInstalling, setShowUpdateIsInstalling] = useState<boolean>(false)
-  const [opened, { toggle, close }] = useDisclosure(false)
+  const [showUpdateIsDownloaded, setShowUpdateIsDownloaded] = useState<boolean>(false)
+  const [opened, { open, close }] = useDisclosure(true)
 
   useEffect(() => {
     window.api.updates.onUpdateAvailable(() => {
-      if (!opened) toggle()
+      if (!opened) open()
     })
     window.api.updates.onAutoUpdaterError(async (error) => {
       setAutoUpdateErrorMessage(
         error ?? 'An error occurred checking for updates. Please try again later.'
       )
     })
+    window.api.updates.onUpdateDownloaded(() => {
+      setShowUpdateIsDownloaded(true)
+    })
     window.api.updates.updateAutoUpdater()
   }, [])
+
+  useEffect(() => {
+    notifications.hide('updateIsInstalling')
+    if (showUpdateIsInstalling) {
+      notifications.show({
+        id: 'updateIsInstalling',
+        title: 'LSA APP is updating',
+        message: 'App is updating to the latest version. Please wait...',
+        color: 'blue',
+        autoClose: false
+      })
+    }
+  }, [showUpdateIsInstalling])
+
+  useEffect(() => {
+    notifications.hide('updateError')
+    if (autoUpdateErrorMessage) {
+      notifications.show({
+        id: 'updateError',
+        title: 'Update error',
+        message: autoUpdateErrorMessage,
+        color: 'red',
+        autoClose: false
+      })
+    }
+  }, [autoUpdateErrorMessage])
+
+  useEffect(() => {
+    notifications.hide('updateIsDownloaded')
+    if (showUpdateIsDownloaded) {
+      notifications.show({
+        id: 'updateIsDownloaded',
+        title: 'Update downloaded',
+        message: 'LSA APP has downloaded the latest version. Please restart the app to update.',
+        color: 'blue',
+        autoClose: false
+      })
+    }
+  }, [showUpdateIsDownloaded])
 
   const triggerUpdate = (): void => {
     setShowUpdateIsInstalling(true)
     window.api.updates.triggerUpdate()
-  }
-
-  if (showUpdateIsInstalling) {
-    notifications.show({
-      title: 'Update is installing',
-      message: 'LSA APP is updating to the latest version. Please wait...',
-      color: 'blue',
-      autoClose: false
-    })
-  }
-
-  if (autoUpdateErrorMessage) {
-    notifications.show({
-      title: 'Update error',
-      message: autoUpdateErrorMessage,
-      color: 'red',
-      autoClose: false
-    })
   }
 
   return (

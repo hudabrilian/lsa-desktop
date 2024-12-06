@@ -16,9 +16,11 @@ export interface IApi {
     triggerUpdate: () => void
     updateAvailable: () => void
     updateNotAvailable: () => void
+    updateDownloaded: () => void
     onUpdateAvailable: (callback) => void
     onUpdateNotAvailable: (callback) => void
     onAutoUpdaterError: (callback) => void
+    onUpdateDownloaded: (callback) => void
     updateAutoUpdater: () => void
   }
 }

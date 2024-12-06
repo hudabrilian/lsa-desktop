@@ -35,10 +35,12 @@ const api: IApi = {
     triggerUpdate: () => ipcRenderer.send('triggerUpdate'),
     updateAvailable: () => ipcRenderer.send('updateAvailable'),
     updateNotAvailable: () => ipcRenderer.send('updateNotAvailable'),
+    updateDownloaded: () => ipcRenderer.send('updateDownloaded'),
     onUpdateAvailable: (callback) => ipcRenderer.on('updateAvailable', () => callback()),
     onUpdateNotAvailable: (callback) => ipcRenderer.on('updateNotAvailable', () => callback()),
     onAutoUpdaterError: (callback) =>
       ipcRenderer.on('autoUpdaterError', (_event, value) => callback(value)),
+    onUpdateDownloaded: (callback) => ipcRenderer.on('updateDownloaded', () => callback()),
     updateAutoUpdater: () => ipcRenderer.send('updateAutoUpdater')
   }
 }
