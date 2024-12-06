@@ -4,6 +4,7 @@ import {
   deleteAllProducts,
   deleteProduct,
   getProduct,
+  openDirectory,
   readProducts,
   updateProduct
 } from './handlers/product'
@@ -32,5 +33,9 @@ export function registerDatabaseListeners(): void {
 
   ipcMain.handle('delete-all-products', () => {
     deleteAllProducts()
+  })
+
+  ipcMain.handle('open-directory', () => {
+    openDirectory()
   })
 }

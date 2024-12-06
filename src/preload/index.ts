@@ -26,6 +26,9 @@ const api: IApi = {
     },
     deleteAll: async (): Promise<void> => {
       return await ipcRenderer.invoke('delete-all-products')
+    },
+    openDirectory: async (): Promise<void> => {
+      return await ipcRenderer.invoke('open-directory')
     }
   },
   updates: {

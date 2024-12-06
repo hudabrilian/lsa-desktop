@@ -10,6 +10,7 @@ export interface IApi {
     update: (id: string, product: Product) => Promise<void>
     delete: (id: string) => Promise<void>
     deleteAll: () => Promise<void>
+    openDirectory: () => Promise<void>
   }
   updates: {
     triggerUpdate: () => void

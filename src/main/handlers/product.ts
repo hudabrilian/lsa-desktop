@@ -1,10 +1,11 @@
 import * as fs from 'node:fs'
 import path from 'node:path'
 import { Product } from '../../preload/types'
-import { app } from 'electron'
+import { app, shell } from 'electron'
 
 // const dataDirPath = path.join(__dirname, '..', 'data')
-const dataDirPath = `${app.getPath('userData')}/data/`
+const userDataPath = app.getPath('userData')
+const dataDirPath = `${userDataPath}\\data\\`
 
 export const initFolder = (): void => {
   if (!fs.existsSync(dataDirPath)) {
@@ -71,4 +72,8 @@ export const deleteAllProducts = (): void => {
     const filePath = path.join(dataDirPath, file)
     fs.unlinkSync(filePath)
   })
+}
+
+export const openDirectory = (): void => {
+  shell.openPath(`${userDataPath}\\data`)
 }
