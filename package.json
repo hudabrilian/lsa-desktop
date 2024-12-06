@@ -1,6 +1,6 @@
 {
   "name": "lsa-desktop",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An Electron application for lot sizing in material requirement planning.",
   "main": "./out/main/index.js",
   "author": "hudabrilian",
