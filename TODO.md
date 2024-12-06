@@ -1,0 +1,85 @@
+# LSA App
+
+web-based platform specifically developed to assist companies in determining the most
+efficient lot size for material orders. The application supports various lot sizing
+methods commonly used in Material Requirement Planning (MRP)
+
+### Todo
+
+- [x] Initialize Project
+- [x] Set up project structure
+- [x] Create handler for product API
+- [x] Install Mantine
+- [x] Create folder structure for components
+- [x] Create folder structure for pages
+- [x] Setup routing for pages
+  - [x] Home page
+  - [ ] About page
+  - [ ] Guide page
+  - [ ] Product page
+    - [x] List product page
+    - [x] Create product page
+    - [x] Info product page
+    - [x] Parts product page
+    - [x] BOM product page
+    - [x] MPS product page
+    - [x] IR product page
+    - [x] Summary product page
+    - [x] Lot Sizing page
+      - [x] Calculation
+        - [x] Exploding
+        - [x] LFL
+          - [ ] Step by step
+        - [x] EOQ
+          - [ ] Step by step
+          - [x] Calculation value
+        - [x] POQ
+          - [ ] Step by step
+          - [x] Calculation value
+        - [x] FOQ
+        - [x] FPR
+        - [x] LUC
+          - [ ] Step by step
+          - [x] LUC Table
+        - [x] LTC
+          - [ ] Step by step
+          - [x] LTC Table
+        - [x] PPB
+          - [ ] Step by step
+          - [x] PPB Table
+        - [x] WWA
+          - [ ] Step by step
+          - [x] Z and F table
+        - [x] Cost recap
+        - [x] Graphic recap
+        - [x] Selected POR
+      - [x] Parts list page
+      - [x] Recap page
+        - [x] POR page
+        - [x] Cost page
+  - [ ] History page
+- [x] Create Lot Sizing method
+  - [x] LFL
+  - [x] EOQ
+  - [x] POQ
+  - [x] FOQ
+  - [x] FPR
+  - [x] LUC
+  - [x] LTC
+  - [x] PPB
+  - [x] WWA
+  - [x] Cost recap
+  - [x] Graphic recap
+  - [x] Selected POR
+- [ ] Implement export
+  - [ ] Product information
+  - [ ] Recap POR
+    - [ ] Excel
+    - [ ] PDF
+  - [ ] Recap cost
+    - [ ] Excel
+    - [ ] PDF
+- [ ] Implement import
+  - [ ] Parts list excel
+  - [ ] MPS excel
+  - [ ] IR excel

@@ -1,0 +1,44 @@
+name: Build/release Electron app
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+        include:
+          - os: windows-latest
+            platform: windows
+
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v3
+
+      - name: 'Install pnpm'
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: 'Install dependencies'
+        run: pnpm install
+
+      - name: Build Electron app
+        run: pnpm run build
+
+      - name: Run Electron Builder
+        run: |
+          npx electron-builder --${{ matrix.platform }} --publish always
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
