@@ -64,6 +64,7 @@ export default function UpdateNotification(): JSX.Element {
   }, [showUpdateIsDownloaded])
 
   const triggerUpdate = (): void => {
+    close()
     setShowUpdateIsInstalling(true)
     window.api.updates.triggerUpdate()
   }
