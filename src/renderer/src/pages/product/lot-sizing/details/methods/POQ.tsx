@@ -5,8 +5,8 @@ import { useProductContext } from '@renderer/context/ProductContext'
 import { MRPTableData } from '@renderer/types'
 import { POQ } from '@renderer/utils/mrp'
 import { useEffect, useState } from 'react'
-import Latex from 'react-latex-next'
 import { Part } from 'src/preload/types'
+import TeX from "@matejmazur/react-katex";
 
 export default function POQTable({ part }: { part: Part }): React.JSX.Element {
   const { product } = useProductContext()
@@ -34,7 +34,19 @@ export default function POQTable({ part }: { part: Part }): React.JSX.Element {
     )
   }
 
-  const poqKatex = `POQ = $\\sqrt{\\frac{2\\times S}{D\\times H}}$ = $\\sqrt{\\frac{2 \\times ${part.inventoryRecord.orderCost}}{${data.demand / product.period} \\times ${part.inventoryRecord.holdingCost}}}$ = ${data.poqValue}`
+const poqKatex = String.raw`
+POQ = \sqrt{\frac{2 \times S}{D \times H}}
+=
+\sqrt{\frac{
+2 \times ${part.inventoryRecord.orderCost}
+}{
+${data.demand / product.period}
+\times
+${part.inventoryRecord.holdingCost}
+}}
+=
+${data.poqValue}
+`;
 
   return (
     <Stack py={10}>
@@ -44,7 +56,7 @@ export default function POQTable({ part }: { part: Part }): React.JSX.Element {
       <MRPTable data={data} />
 
       <Group justify="space-between" py="sm">
-        <Latex strict>{poqKatex}</Latex>
+        <TeX block math={poqKatex} />
         <Button>Step by step</Button>
       </Group>
 

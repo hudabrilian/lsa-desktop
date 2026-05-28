@@ -5,8 +5,8 @@ import { useProductContext } from '@renderer/context/ProductContext'
 import { MRPTableData } from '@renderer/types'
 import { EOQ } from '@renderer/utils/mrp'
 import { useEffect, useState } from 'react'
-import Latex from 'react-latex-next'
 import { Part } from 'src/preload/types'
+import TeX from "@matejmazur/react-katex";
 
 export default function EOQTable({ part }: { part: Part }): React.JSX.Element {
   const { product } = useProductContext()
@@ -34,7 +34,18 @@ export default function EOQTable({ part }: { part: Part }): React.JSX.Element {
     )
   }
 
-  const eoqKatex = `EOQ = $\\sqrt{\\frac{2 \\times S \\times D}{H}}$ = $\\sqrt{\\frac{2 \\times ${part.inventoryRecord.orderCost} \\times ${data.demand / product.period}}{${part.inventoryRecord.holdingCost}}}$ = ${data.eoqValue}`
+ const eoqKatex = String.raw`
+EOQ = \sqrt{\frac{2 \times S \times D}{H}}
+=
+\sqrt{\frac{
+2 \times ${part.inventoryRecord.orderCost}
+\times ${(data.demand / product.period)}
+}{
+${part.inventoryRecord.holdingCost}
+}}
+=
+${data.eoqValue}
+`;
 
   return (
     <Stack py={10}>
@@ -44,7 +55,7 @@ export default function EOQTable({ part }: { part: Part }): React.JSX.Element {
       <MRPTable data={data} />
 
       <Group justify="space-between" py="sm">
-        <Latex strict>{eoqKatex}</Latex>
+        <TeX block math={eoqKatex} />
         <Button>Step by step</Button>
       </Group>
       <MRPDetail part={part} data={data} />
