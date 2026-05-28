@@ -187,7 +187,7 @@ export default function MRPDetail({
               <Table.Tr>
                 <Table.Td>Average Inventory</Table.Td>
                 <Table.Td>
-                  <Text>Total POH / Periode</Text>
+                  <Text>Total POH / Period</Text>
                 </Table.Td>
                 <Table.Td>
                   {new Intl.NumberFormat('id-ID', {

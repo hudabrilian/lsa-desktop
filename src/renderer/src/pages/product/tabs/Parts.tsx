@@ -16,7 +16,7 @@ export default function PartsProductPage(): React.JSX.Element {
 
   return (
     <Stack>
-      <Title order={2}>Parts product</Title>
+      <Title order={2}>Parts</Title>
       <PartForm product={product} />
     </Stack>
   )

@@ -99,8 +99,8 @@ export default function PartForm({ product }: { product: Product }): React.JSX.E
                         >
                           <TextInput
                             key={`part-${index}-${part.id}-name`}
-                            label={`Nama Part ${index2 + 1}`}
-                            placeholder={`Part ke-${index2 + 1} Level ${index}`}
+                            label={`Part Name ${index2 + 1}`}
+                            placeholder={`Part #${index2 + 1} Level ${index}`}
                             disabled={index === 0}
                             {...form.getInputProps(`parts.${id}.name`)}
                           />
@@ -131,7 +131,7 @@ export default function PartForm({ product }: { product: Product }): React.JSX.E
                             maw={200}
                             key={`part-${index}-${part.id}-amount`}
                             label={`Amount Part ${index2 + 1}`}
-                            placeholder={`Part ke-${index2 + 1} Level ${index + 1}`}
+                            placeholder={`Part #${index2 + 1} Level ${index + 1}`}
                             disabled={index === 0}
                             {...form.getInputProps(`parts.${id}.amount`)}
                           />

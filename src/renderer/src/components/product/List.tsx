@@ -1,8 +1,8 @@
 import { Button, Code, Group, Stack, Table, Text } from '@mantine/core'
+import { Link } from 'react-router-dom'
 import { modals } from '@mantine/modals'
 import { notifications } from '@mantine/notifications'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Product } from 'src/preload/types'
 
 export default function ProductList(): React.JSX.Element {
@@ -83,7 +83,7 @@ export default function ProductList(): React.JSX.Element {
                     >
                       Lot Sizing
                     </Button>
-                    <Button component={Link} to={`/product/${product.id}/info`}>
+                    <Button variant="light" component={Link} to={`/product/${product.id}/info`}>
                       Information
                     </Button>
                     <Button
@@ -102,7 +102,16 @@ export default function ProductList(): React.JSX.Element {
               </Table.Tr>
             ))}
         </Table.Tbody>
-        {products.length < 1 && <Table.Caption>Data not found</Table.Caption>}
+        {products.length < 1 && (
+          <Table.Caption>
+            <Stack align="center" py="xl">
+              <Text>No products found</Text>
+              <Button component={Link} to="/product/create">
+                Create Product
+              </Button>
+            </Stack>
+          </Table.Caption>
+        )}
       </Table>
     </Stack>
   )

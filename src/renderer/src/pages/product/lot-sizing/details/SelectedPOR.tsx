@@ -16,13 +16,13 @@ export default function SelectedPORTab({ part }: { part: Part }): React.JSX.Elem
   return (
     <Stack py={10}>
       <Title order={3} style={{ textAlign: 'center' }}>
-        POR Terpilih
+        Selected POR
       </Title>
       <Paper withBorder>
         <Table withColumnBorders highlightOnHover>
           <Table.Tbody>
             <Table.Tr style={{ textAlign: 'center' }}>
-              <Table.Td>Periode</Table.Td>
+              <Table.Td>Period</Table.Td>
               {Array(product.period)
                 .fill(0)
                 .map((_, index) => (
@@ -41,7 +41,8 @@ export default function SelectedPORTab({ part }: { part: Part }): React.JSX.Elem
         </Table>
       </Paper>
       <Text style={{ textAlign: 'center' }}>
-        POR Terpilih akan menjadi GR untuk material pada level di bawahnya melalui proses exploding
+        The selected POR will become the GR for materials at the level below it through the
+        exploding process
       </Text>
     </Stack>
   )

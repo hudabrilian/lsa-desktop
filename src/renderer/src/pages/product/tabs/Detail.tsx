@@ -16,7 +16,7 @@ export default function DetailProductTab(): React.JSX.Element {
 
   return (
     <Stack>
-      <Title order={2}>Info product</Title>
+      <Title order={2}>Product Information</Title>
       <ProductForm product={product} />
     </Stack>
   )

@@ -216,7 +216,7 @@ export default function InventoryRecordForm({ product }: { product: Product }): 
         <Table.Tr key={part.id} style={{ verticalAlign: 'middle' }}>
           <Table.Td colSpan={2}>{part.name}</Table.Td>
           <Table.Td>
-            <SimpleGrid cols={12} my={10}>
+            <SimpleGrid cols={{ base: 4, sm: 6, md: 8, lg: 12 }} my={10}>
               {part.inventoryRecord.scheduleReceipt.map((_, index2) => {
                 const partIndex = form.getValues().data.findIndex((p) => p.id === part.id)
 
@@ -314,14 +314,14 @@ export default function InventoryRecordForm({ product }: { product: Product }): 
                   </Stack>
                   <Stack>
                     <Box>
-                      <Title order={2}>Schedule Receipt</Title>
+                      <Title order={3}>Schedule Receipt</Title>
                       <Table highlightOnHover>
                         <Table.Thead>
                           <Table.Tr>
                             <Table.Th colSpan={2} maw={200} miw={100}>
                               Part
                             </Table.Th>
-                            <Table.Th style={{ textAlign: 'center' }}>Periode</Table.Th>
+                            <Table.Th style={{ textAlign: 'center' }}>Period</Table.Th>
                           </Table.Tr>
                         </Table.Thead>
                         <Table.Tbody>{scheduleReceiptFields(index)}</Table.Tbody>

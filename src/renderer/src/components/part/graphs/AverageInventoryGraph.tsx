@@ -15,7 +15,7 @@ export default function AverageInventoryGraph({
     <Card p="xl">
       <Card.Section>
         <Text fw="bold" size="lg" mb="md" ta="center">
-          Rata-rata Inventori
+          Average Inventory
         </Text>
         <BarChart
           h={200}
@@ -38,7 +38,7 @@ export default function AverageInventoryGraph({
           ]}
         />
         <Text mt={6} ta="center">
-          Berdasarkan grafik perbandingan biaya, total biaya terkecil sebesar{' '}
+          Based on the cost comparison chart, the smallest total cost is{' '}
           {new Intl.NumberFormat('id-ID', {
             maximumFractionDigits: 0
           }).format(minimumCost[0].Unit)}

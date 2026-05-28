@@ -27,7 +27,7 @@ export default function LFLTab({ part }: { part: Part }): React.JSX.Element {
   if (!data) {
     return (
       <Stack align="center" justify="center" h={300}>
-        <Title order={3}>Proses menghitung...</Title>
+        <Title order={3}>Calculating...</Title>
         <Loader color="blue" />
       </Stack>
     )

@@ -16,7 +16,7 @@ export default function MPSProductTab(): React.JSX.Element {
 
   return (
     <Stack>
-      <Title order={2}>Master Production Schedule product</Title>
+      <Title order={2}>Master Production Schedule</Title>
       <MPSForm product={product} />
     </Stack>
   )

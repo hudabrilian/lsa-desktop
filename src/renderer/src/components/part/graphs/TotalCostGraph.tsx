@@ -15,7 +15,7 @@ export default function TotalCostGraph({
     <Card p="xl">
       <Card.Section>
         <Text fw="bold" size="lg" mb="md" ta="center">
-          Total Biaya
+          Total Cost
         </Text>
         <BarChart
           h={200}
@@ -42,7 +42,7 @@ export default function TotalCostGraph({
           ]}
         />
         <Text mt={6} ta="center">
-          Berdasarkan grafik perbandingan biaya, total biaya terkecil sebesar{' '}
+          Based on the cost comparison chart, the smallest total cost is{' '}
           {new Intl.NumberFormat('id-ID', {
             style: 'currency',
             currency: 'IDR',

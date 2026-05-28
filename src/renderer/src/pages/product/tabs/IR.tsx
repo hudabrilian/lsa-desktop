@@ -16,7 +16,7 @@ export default function InventoryRecordProductPage(): React.JSX.Element {
 
   return (
     <Stack>
-      <Title order={2}>Inventory Record product</Title>
+      <Title order={2}>Inventory Record</Title>
       <InventoryRecordForm product={product} />
     </Stack>
   )

@@ -4,7 +4,7 @@ import ProductForm from '@renderer/components/product/Form'
 export default function CreateProductPage(): React.JSX.Element {
   return (
     <Stack>
-      <Title order={2}>Add new Product</Title>
+      <Title order={2}>Create Product</Title>
       <ProductForm />
     </Stack>
   )

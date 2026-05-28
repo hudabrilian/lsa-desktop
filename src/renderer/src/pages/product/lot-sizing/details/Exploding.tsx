@@ -22,8 +22,8 @@ export default function ExplodingTab({ part }: { part: Part }): React.JSX.Elemen
     <Stack my="md">
       <Paper shadow="xs" p="md" withBorder>
         <Stack>
-          <Text>Langkah 1:</Text>
-          <Text>POR terpilih material induk (parent): {data.partParent.name}</Text>
+          <Text>Step 1:</Text>
+          <Text>Selected POR of the parent material: {data.partParent.name}</Text>
           <Table withColumnBorders highlightOnHover>
             <Table.Thead>
               <Table.Tr>
@@ -46,10 +46,9 @@ export default function ExplodingTab({ part }: { part: Part }): React.JSX.Elemen
       </Paper>
       <Paper shadow="xs" p="md" withBorder>
         <Stack>
-          <Text>Langkah 2:</Text>
+          <Text>Step 2:</Text>
           <Text>
-            GR material {part.name} didapatkan dari hasil perkalian antara POR dengan jumlah
-            material per induk
+            GR for material {part.name} is obtained by multiplying POR by the amount per parent
           </Text>
           <Table withColumnBorders highlightOnHover>
             <Table.Thead>

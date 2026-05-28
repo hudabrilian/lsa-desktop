@@ -10,11 +10,11 @@ export default function ListProductsPage(): React.JSX.Element {
   return (
     <Box>
       <Group justify="space-between" align="center">
-        <Title order={2}>List Product</Title>
+        <Title order={2}>Products</Title>
         <Group>
           <Button onClick={handleOpenDirectory}>Open directory</Button>
-          <Button component={Link} to={`/product/create`}>
-            Add new
+          <Button variant="gradient" component={Link} to={`/product/create`}>
+            Add Product
           </Button>
         </Group>
       </Group>

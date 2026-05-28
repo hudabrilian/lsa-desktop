@@ -12,11 +12,11 @@ export default function CostRecapTab({ part }: { part: Part }): React.JSX.Elemen
 
   const data = recapData({ part, product })
 
-  const minimumTotalBiaya = data.filter(
+  const minimumTotalCost = data.filter(
     (d) => d.totalCost === Math.min(...data.map((item) => item.totalCost))
   )
 
-  const totalBiayaMinimum = minimumTotalBiaya[0].totalCost
+  const minimumTotalCostValue = minimumTotalCost[0].totalCost
 
   return (
     <Stack align="center" mt={10}>
@@ -38,7 +38,7 @@ export default function CostRecapTab({ part }: { part: Part }): React.JSX.Elemen
                 key={index}
                 style={{
                   backgroundColor:
-                    minimumTotalBiaya.find((c) => c.method === d.method) && 'slateblue'
+                    minimumTotalCost.find((c) => c.method === d.method) && 'slateblue'
                 }}
               >
                 <Table.Td>{d.method}</Table.Td>
@@ -84,7 +84,7 @@ export default function CostRecapTab({ part }: { part: Part }): React.JSX.Elemen
           style: 'currency',
           currency: 'IDR',
           maximumFractionDigits: 0
-        }).format(totalBiayaMinimum)}
+        }).format(minimumTotalCostValue)}
       </Text>
     </Stack>
   )

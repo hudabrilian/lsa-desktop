@@ -37,34 +37,20 @@ export default function SummaryProductTab(): React.JSX.Element {
         <Group align="start" grow>
           <Stack>
             <Title order={3}>Product Info</Title>
-            <Table>
-              <Table.Tbody>
-                <Table.Tr>
-                  <Table.Td>Id</Table.Td>
-                  <Table.Td>{product.id}</Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td>Name</Table.Td>
-                  <Table.Td>{product.name}</Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td>Period</Table.Td>
-                  <Table.Td>{product.period}</Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td>Lowest Level</Table.Td>
-                  <Table.Td>{product.lowestLevel}</Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td>Created At</Table.Td>
-                  <Table.Td>{new Date(product.createdAt).toLocaleString()}</Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td>Updated At</Table.Td>
-                  <Table.Td>{new Date(product.updatedAt).toLocaleString()}</Table.Td>
-                </Table.Tr>
-              </Table.Tbody>
-            </Table>
+            <SimpleGrid cols={2} spacing="xs" verticalSpacing={4}>
+              <Text fw={600}>ID</Text>
+              <Text>{product.id}</Text>
+              <Text fw={600}>Name</Text>
+              <Text>{product.name}</Text>
+              <Text fw={600}>Period</Text>
+              <Text>{product.period}</Text>
+              <Text fw={600}>Lowest Level</Text>
+              <Text>{product.lowestLevel}</Text>
+              <Text fw={600}>Created At</Text>
+              <Text>{new Date(product.createdAt).toLocaleString()}</Text>
+              <Text fw={600}>Updated At</Text>
+              <Text>{new Date(product.updatedAt).toLocaleString()}</Text>
+            </SimpleGrid>
           </Stack>
           <MPSSection />
         </Group>
@@ -81,7 +67,7 @@ export default function SummaryProductTab(): React.JSX.Element {
       <Paper shadow="xs" p="md" withBorder>
         <Stack>
           <Title order={3}>Bill of Materials</Title>
-          <ScrollArea>
+          <ScrollArea mah={400}>
             <BOMGraph product={product} />
           </ScrollArea>
         </Stack>
@@ -101,7 +87,7 @@ export default function SummaryProductTab(): React.JSX.Element {
           <Center>
             <Stack>
               <Text>No MPS data found</Text>
-              <Button component={Link} to={`/product/${product.id}/mps`}>
+              <Button variant="gradient" component={Link} to={`/product/${product.id}/mps`}>
                 Add MPS
               </Button>
             </Stack>
@@ -110,12 +96,8 @@ export default function SummaryProductTab(): React.JSX.Element {
           <Table>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>
-                  <Title order={4}>Period</Title>
-                </Table.Th>
-                <Table.Th>
-                  <Title order={4}>Amount</Title>
-                </Table.Th>
+                <Table.Th fw={600}>Period</Table.Th>
+                <Table.Th fw={600}>Amount</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -135,8 +117,23 @@ export default function SummaryProductTab(): React.JSX.Element {
   }
 
   function IRSection(): React.JSX.Element {
-    if (!product || product.parts.length < 2) {
+    if (!product) {
       return <></>
+    }
+
+    if (product.parts.length < 2) {
+      return (
+        <Paper shadow="xs" p="md" withBorder>
+          <Center>
+            <Stack>
+              <Text>No inventory record data found</Text>
+              <Button variant="gradient" component={Link} to={`/product/${product.id}/parts`}>
+                Add Parts
+              </Button>
+            </Stack>
+          </Center>
+        </Paper>
+      )
     }
 
     return (
@@ -146,27 +143,13 @@ export default function SummaryProductTab(): React.JSX.Element {
           <Table highlightOnHover>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>
-                  <Title order={5}>Part</Title>
-                </Table.Th>
-                <Table.Th>
-                  <Title order={5}>On Hand</Title>
-                </Table.Th>
-                <Table.Th>
-                  <Title order={5}>Lead Time</Title>
-                </Table.Th>
-                <Table.Th>
-                  <Title order={5}>Order Cost</Title>
-                </Table.Th>
-                <Table.Th>
-                  <Title order={5}>Holding Cost</Title>
-                </Table.Th>
-                <Table.Th>
-                  <Title order={5}>Order Quantity (FOQ)</Title>
-                </Table.Th>
-                <Table.Th>
-                  <Title order={5}>Order Period (FPR)</Title>
-                </Table.Th>
+                <Table.Th fw={600}>Part</Table.Th>
+                <Table.Th fw={600}>On Hand</Table.Th>
+                <Table.Th fw={600}>Lead Time</Table.Th>
+                <Table.Th fw={600}>Order Cost</Table.Th>
+                <Table.Th fw={600}>Holding Cost</Table.Th>
+                <Table.Th fw={600}>Order Quantity (FOQ)</Table.Th>
+                <Table.Th fw={600}>Order Period (FPR)</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -205,14 +188,20 @@ export default function SummaryProductTab(): React.JSX.Element {
   }
 
   function SRSection(): React.JSX.Element {
-    console.log(product?.parts)
-
-    if (
-      !product ||
-      product.parts.length < 2 ||
-      product.parts[0].inventoryRecord.scheduleReceipt.length < 1
-    ) {
+    if (!product || product.parts.length < 2) {
       return <></>
+    }
+
+    if (product.parts[0].inventoryRecord.scheduleReceipt.length < 1) {
+      return (
+        <Paper shadow="xs" p="md" withBorder>
+          <Center>
+            <Stack>
+              <Text>No schedule receipt data found</Text>
+            </Stack>
+          </Center>
+        </Paper>
+      )
     }
 
     return (
@@ -223,11 +212,9 @@ export default function SummaryProductTab(): React.JSX.Element {
             <Table highlightOnHover>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>
-                    <Title order={4}>Part</Title>
-                  </Table.Th>
-                  <Table.Th align="center">
-                    <Title order={4}>Period</Title>
+                  <Table.Th fw={600}>Part</Table.Th>
+                  <Table.Th align="center" fw={600}>
+                    Period
                   </Table.Th>
                 </Table.Tr>
               </Table.Thead>
@@ -241,7 +228,7 @@ export default function SummaryProductTab(): React.JSX.Element {
                     <Table.Tr key={part.id}>
                       <Table.Td miw={100}>{part.name}</Table.Td>
                       <Table.Td>
-                        <SimpleGrid cols={12} my={10}>
+                        <SimpleGrid cols={{ base: 4, sm: 6, md: 8, lg: 12 }} my={10}>
                           {part.inventoryRecord.scheduleReceipt.map((data, index) => (
                             <Paper withBorder key={index} p="sm" shadow="md">
                               <Stack justify="center" align="center" gap="xs">

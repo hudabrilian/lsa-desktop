@@ -34,13 +34,13 @@ export default function PORProductTab(): React.JSX.Element {
     <Stack>
       <Group justify="space-between" py={6}>
         <Text>
-          Data Planned Order Release berikut merupakan jumlah POR setiap material dengan total biaya
-          terkecil
+          The Planned Order Release data below represents the POR for each material with the lowest
+          total cost
         </Text>
         <Button
           onClick={() => {
             modals.open({
-              title: 'Silahkan pilih format yang diinginkan',
+              title: 'Please choose the desired format',
               centered: true,
               children: (
                 <Group grow>
@@ -61,7 +61,7 @@ export default function PORProductTab(): React.JSX.Element {
       <Table withColumnBorders highlightOnHover>
         <Table.Thead>
           <Table.Tr>
-            <Table.Td>Nama Part</Table.Td>
+            <Table.Td>Part Name</Table.Td>
             <Table.Td>Level</Table.Td>
             {Array(product.period)
               .fill(0)

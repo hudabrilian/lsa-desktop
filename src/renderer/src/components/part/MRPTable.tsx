@@ -15,7 +15,7 @@ export default function MRPTablePage({ data }: { data: MRPTableData }): React.JS
         <Table withColumnBorders highlightOnHover>
           <Table.Tbody>
             <Table.Tr style={{ textAlign: 'center' }}>
-              <Table.Td>Periode</Table.Td>
+              <Table.Td>Period</Table.Td>
               {Array(product.period + 1)
                 .fill(0)
                 .map((_, index) => (

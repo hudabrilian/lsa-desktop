@@ -35,13 +35,13 @@ export default function CostProductTab(): React.JSX.Element {
     <Stack>
       <Group justify="space-between" py={6}>
         <Text>
-          Data biaya berikut merupakan total biaya terkecil dari metode terpilih dari setiap
+          The following cost data represents the lowest total cost from the selected method for each
           material
         </Text>
         <Button
           onClick={() => {
             modals.open({
-              title: 'Silahkan pilih format yang diinginkan',
+              title: 'Please choose the desired format',
               centered: true,
               children: (
                 <Group grow>
@@ -62,9 +62,9 @@ export default function CostProductTab(): React.JSX.Element {
       <Table withColumnBorders highlightOnHover>
         <Table.Thead>
           <Table.Tr>
-            <Table.Td>Nama Part</Table.Td>
+            <Table.Td>Part Name</Table.Td>
             <Table.Td>Level</Table.Td>
-            <Table.Td>Biaya</Table.Td>
+            <Table.Td>Cost</Table.Td>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>

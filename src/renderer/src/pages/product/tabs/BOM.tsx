@@ -16,7 +16,7 @@ export default function BOMProductPage(): React.JSX.Element {
 
   return (
     <Stack>
-      <Title order={2}>Bill of Materials product</Title>
+      <Title order={2}>Bill of Materials</Title>
       <ScrollAreaAutosize>
         <BOMGraph product={product} />
       </ScrollAreaAutosize>
