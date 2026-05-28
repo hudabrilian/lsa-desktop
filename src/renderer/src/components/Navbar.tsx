@@ -19,7 +19,7 @@ const navList: {
     href: '/about',
     label: 'About',
     icon: <Info size="1.3rem" strokeWidth={1.5} />,
-    disabled: true
+    disabled: false
   },
   {
     href: '/guide',
