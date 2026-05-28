@@ -4,7 +4,13 @@ import { MRPTableData } from '@renderer/types'
 import { sum } from 'mathjs'
 import { Part } from 'src/preload/types'
 
-export default function MRPDetail({ part, data }: { part: Part; data: MRPTableData }): React.JSX.Element {
+export default function MRPDetail({
+  part,
+  data
+}: {
+  part: Part
+  data: MRPTableData
+}): React.JSX.Element {
   const { product } = useProductContext()
 
   if (!product) {

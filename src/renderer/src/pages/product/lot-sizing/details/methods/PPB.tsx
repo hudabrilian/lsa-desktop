@@ -107,8 +107,7 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
                     <Table.Td>{data.ppbTable.pp[index]}</Table.Td>
                     <Table.Td>{data.ppbTable.app[index]}</Table.Td>
                     <Table.Td>
-                      {data.ppbTable.app[index]}{' '}
-                      {data.ppbTable.app[index] <= data.epp ? '<=' : '>'}{' '}
+                      {data.ppbTable.app[index]} {data.ppbTable.app[index] <= data.epp ? '<=' : '>'}{' '}
                       {data.epp}
                     </Table.Td>
                   </Table.Tr>
@@ -240,7 +239,8 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
             <Stack>
               <Title order={4}>Net Requirements (NR)</Title>
               <Text>
-                NR<sub>t</sub> = GR<sub>t</sub> &minus; SR<sub>t</sub> &minus; POH<sub>t&minus;1</sub>
+                NR<sub>t</sub> = GR<sub>t</sub> &minus; SR<sub>t</sub> &minus; POH
+                <sub>t&minus;1</sub>
               </Text>
               <Table highlightOnHover withColumnBorders withTableBorder>
                 <Table.Thead>
@@ -253,45 +253,38 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => {
-                      const pohPrev =
-                        period === 1
-                          ? part.inventoryRecord.onHand
-                          : data.poh[period - 1]
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => {
+                    const pohPrev =
+                      period === 1 ? part.inventoryRecord.onHand : data.poh[period - 1]
 
-                      return (
-                        <Table.Tr key={period}>
-                          <Table.Td fw={700}>{period}</Table.Td>
-                          <Table.Td>{data.gr[period]}</Table.Td>
-                          <Table.Td>{data.sr[period]}</Table.Td>
-                          <Table.Td>{pohPrev}</Table.Td>
-                          <Table.Td>{data.nr[period]}</Table.Td>
-                        </Table.Tr>
-                      )
-                    }
-                  )}
+                    return (
+                      <Table.Tr key={period}>
+                        <Table.Td fw={700}>{period}</Table.Td>
+                        <Table.Td>{data.gr[period]}</Table.Td>
+                        <Table.Td>{data.sr[period]}</Table.Td>
+                        <Table.Td>{pohPrev}</Table.Td>
+                        <Table.Td>{data.nr[period]}</Table.Td>
+                      </Table.Tr>
+                    )
+                  })}
                 </Table.Tbody>
               </Table>
             </Stack>
           </Stepper.Step>
 
-          <Stepper.Step
-            label="EPP"
-            description="Economic Part Period"
-          >
+          <Stepper.Step label="EPP" description="Economic Part Period">
             <Stack>
               <Title order={4}>Economic Part Period (EPP)</Title>
               <Paper p="sm" withBorder>
                 <Text>EPP = S / H</Text>
                 <Text>
-                  EPP = {part.inventoryRecord.orderCost} /{' '}
-                  {part.inventoryRecord.holdingCost} = {data.epp}
+                  EPP = {part.inventoryRecord.orderCost} / {part.inventoryRecord.holdingCost} ={' '}
+                  {data.epp}
                 </Text>
               </Paper>
               <Text size="sm" c="dimmed">
-                EPP is the target value. The algorithm tries to make the
-                cumulative part periods (APP) as close to EPP as possible.
+                EPP is the target value. The algorithm tries to make the cumulative part periods
+                (APP) as close to EPP as possible.
               </Text>
             </Stack>
           </Stepper.Step>
@@ -299,9 +292,7 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
           <Stepper.Step label="PPB Table" description="Trial period calculations">
             <Stack>
               <Title order={4}>PPB Trial Periods</Title>
-              <Text>
-                For each trial, PP and APP are computed, then compared to EPP.
-              </Text>
+              <Text>For each trial, PP and APP are computed, then compared to EPP.</Text>
               <Table highlightOnHover withColumnBorders withTableBorder>
                 <Table.Thead>
                   <Table.Tr>
@@ -333,10 +324,7 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
                         <Table.Td>{data.ppbTable.app[index]}</Table.Td>
                         <Table.Td>
                           {data.ppbTable.app[index]}{' '}
-                          {data.ppbTable.app[index] <= data.epp
-                            ? '<='
-                            : '>'}{' '}
-                          {data.epp}
+                          {data.ppbTable.app[index] <= data.epp ? '<=' : '>'} {data.epp}
                         </Table.Td>
                       </Table.Tr>
                     )
@@ -345,14 +333,10 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
               </Table>
 
               <SimpleGrid cols={2} my={10}>
-                <Text size="sm">
-                  D = NR at period n + T &minus; 1
-                </Text>
+                <Text size="sm">D = NR at period n + T &minus; 1</Text>
                 <Text size="sm">PP = (T &minus; 1) × D</Text>
                 <Text size="sm">APP = &Sigma;PP</Text>
-                <Text size="sm">
-                  EPP = S / H = {data.epp}
-                </Text>
+                <Text size="sm">EPP = S / H = {data.epp}</Text>
               </SimpleGrid>
             </Stack>
           </Stepper.Step>
@@ -361,14 +345,13 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
             <Stack>
               <Title order={4}>Order Decision Rule</Title>
               <Text>
-                Place an order when APP &gt; EPP, using the cumulative demand up
-                to T &minus; 1 (or T if T = 1).
+                Place an order when APP &gt; EPP, using the cumulative demand up to T &minus; 1 (or
+                T if T = 1).
               </Text>
               <Paper p="sm" withBorder>
                 <Text>EPP = {data.epp}</Text>
                 <Text>
-                  POP = Cum. D when APP first exceeds EPP (or at the end of
-                  planning horizon)
+                  POP = Cum. D when APP first exceeds EPP (or at the end of planning horizon)
                 </Text>
               </Paper>
             </Stack>
@@ -387,16 +370,14 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => (
-                      <Table.Tr key={period}>
-                        <Table.Td fw={700}>{period}</Table.Td>
-                        <Table.Td>{data.pop[period]}</Table.Td>
-                        <Table.Td>{data.poh[period]}</Table.Td>
-                        <Table.Td>{data.por[period]}</Table.Td>
-                      </Table.Tr>
-                    )
-                  )}
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => (
+                    <Table.Tr key={period}>
+                      <Table.Td fw={700}>{period}</Table.Td>
+                      <Table.Td>{data.pop[period]}</Table.Td>
+                      <Table.Td>{data.poh[period]}</Table.Td>
+                      <Table.Td>{data.por[period]}</Table.Td>
+                    </Table.Tr>
+                  ))}
                 </Table.Tbody>
               </Table>
 
@@ -428,9 +409,7 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
                     </Table.Tr>
                     <Table.Tr>
                       <Table.Td fw={700}>Total Inventory (POH)</Table.Td>
-                      <Table.Td>
-                        {data.poh.reduce((a, b) => a + b, 0)}
-                      </Table.Td>
+                      <Table.Td>{data.poh.reduce((a, b) => a + b, 0)}</Table.Td>
                     </Table.Tr>
                   </Table.Tbody>
                 </Table>
@@ -448,9 +427,7 @@ export default function PPBTable({ part }: { part: Part }): React.JSX.Element {
             Previous
           </Button>
           <Button
-            onClick={() =>
-              setActiveStep((prev) => Math.min(totalSteps - 1, prev + 1))
-            }
+            onClick={() => setActiveStep((prev) => Math.min(totalSteps - 1, prev + 1))}
             disabled={activeStep === totalSteps - 1}
           >
             Next

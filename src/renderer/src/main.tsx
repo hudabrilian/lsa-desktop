@@ -2,7 +2,7 @@ import '@mantine/charts/styles.css'
 import '@mantine/core/styles.css'
 import '@mantine/notifications/styles.css'
 import '@mantine/nprogress/styles.css'
-import 'katex/dist/katex.min.css';
+import 'katex/dist/katex.min.css'
 import './assets/main.css'
 
 import ReactDOM from 'react-dom/client'

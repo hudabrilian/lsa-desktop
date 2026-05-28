@@ -84,13 +84,7 @@ ${data.poqValue}
 
       <MRPDetail part={part} data={data} />
 
-      <Modal
-        opened={opened}
-        onClose={close}
-        centered
-        title="POQ — Step by Step"
-        size="100%"
-      >
+      <Modal opened={opened} onClose={close} centered title="POQ — Step by Step" size="100%">
         <Stepper active={activeStep} onStepClick={setActiveStep}>
           <Stepper.Step label="Parameter" description="Input parameters">
             <Stack>
@@ -196,7 +190,8 @@ ${data.poqValue}
             <Stack>
               <Title order={4}>Net Requirements (NR)</Title>
               <Text>
-                NR<sub>t</sub> = GR<sub>t</sub> &minus; SR<sub>t</sub> &minus; POH<sub>t&minus;1</sub>
+                NR<sub>t</sub> = GR<sub>t</sub> &minus; SR<sub>t</sub> &minus; POH
+                <sub>t&minus;1</sub>
               </Text>
 
               <Table highlightOnHover withColumnBorders withTableBorder>
@@ -210,24 +205,20 @@ ${data.poqValue}
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => {
-                      const pohPrev =
-                        period === 1
-                          ? part.inventoryRecord.onHand
-                          : data.poh[period - 1]
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => {
+                    const pohPrev =
+                      period === 1 ? part.inventoryRecord.onHand : data.poh[period - 1]
 
-                      return (
-                        <Table.Tr key={period}>
-                          <Table.Td fw={700}>{period}</Table.Td>
-                          <Table.Td>{data.gr[period]}</Table.Td>
-                          <Table.Td>{data.sr[period]}</Table.Td>
-                          <Table.Td>{pohPrev}</Table.Td>
-                          <Table.Td>{data.nr[period]}</Table.Td>
-                        </Table.Tr>
-                      )
-                    }
-                  )}
+                    return (
+                      <Table.Tr key={period}>
+                        <Table.Td fw={700}>{period}</Table.Td>
+                        <Table.Td>{data.gr[period]}</Table.Td>
+                        <Table.Td>{data.sr[period]}</Table.Td>
+                        <Table.Td>{pohPrev}</Table.Td>
+                        <Table.Td>{data.nr[period]}</Table.Td>
+                      </Table.Tr>
+                    )
+                  })}
                 </Table.Tbody>
               </Table>
             </Stack>
@@ -240,9 +231,7 @@ ${data.poqValue}
               <Paper p="sm" withBorder>
                 <Text>Total Demand = &Sigma;GR &minus; &Sigma;SR</Text>
                 <Text fw={700}>Total Demand = {data.demand}</Text>
-                <Text mt="sm">
-                  Average Demand (D) = Total Demand &divide; Periods
-                </Text>
+                <Text mt="sm">Average Demand (D) = Total Demand &divide; Periods</Text>
                 <Text fw={700}>
                   D = {data.demand} &divide; {product.period} = {avgDemand}
                 </Text>
@@ -255,10 +244,7 @@ ${data.poqValue}
               <Title order={4}>Period Order Quantity</Title>
 
               <Paper p="sm" withBorder>
-                <TeX
-                  block
-                  math={String.raw`POQ = \sqrt{\frac{2 \times S}{D \times H}}`}
-                />
+                <TeX block math={String.raw`POQ = \sqrt{\frac{2 \times S}{D \times H}}`} />
                 <TeX
                   block
                   math={String.raw`
@@ -275,19 +261,13 @@ ${part.inventoryRecord.holdingCost}
               </Paper>
 
               <Stack gap="xs">
-                <Text size="sm">
-                  S = Order Cost = {part.inventoryRecord.orderCost}
-                </Text>
-                <Text size="sm">
-                  D = Average Demand = {avgDemand}
-                </Text>
-                <Text size="sm">
-                  H = Holding Cost = {part.inventoryRecord.holdingCost}
-                </Text>
+                <Text size="sm">S = Order Cost = {part.inventoryRecord.orderCost}</Text>
+                <Text size="sm">D = Average Demand = {avgDemand}</Text>
+                <Text size="sm">H = Holding Cost = {part.inventoryRecord.holdingCost}</Text>
               </Stack>
               <Text size="sm" c="dimmed">
-                POQ value is rounded up to the nearest integer, representing the
-                number of periods per order.
+                POQ value is rounded up to the nearest integer, representing the number of periods
+                per order.
               </Text>
             </Stack>
           </Stepper.Step>
@@ -296,8 +276,7 @@ ${part.inventoryRecord.holdingCost}
             <Stack>
               <Title order={4}>MRP Explosion</Title>
               <Text>
-                POP is calculated by grouping NR over POQ ({data.poqValue})
-                consecutive periods.
+                POP is calculated by grouping NR over POQ ({data.poqValue}) consecutive periods.
               </Text>
 
               <Table highlightOnHover withColumnBorders withTableBorder>
@@ -313,33 +292,28 @@ ${part.inventoryRecord.holdingCost}
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => {
-                      const pohPrev =
-                        period === 1
-                          ? part.inventoryRecord.onHand
-                          : data.poh[period - 1]
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => {
+                    const pohPrev =
+                      period === 1 ? part.inventoryRecord.onHand : data.poh[period - 1]
 
-                      return (
-                        <Table.Tr key={period}>
-                          <Table.Td fw={700}>{period}</Table.Td>
-                          <Table.Td>{data.gr[period]}</Table.Td>
-                          <Table.Td>{data.sr[period]}</Table.Td>
-                          <Table.Td>{pohPrev}</Table.Td>
-                          <Table.Td>{data.nr[period]}</Table.Td>
-                          <Table.Td>{data.pop[period]}</Table.Td>
-                          <Table.Td>{data.poh[period]}</Table.Td>
-                        </Table.Tr>
-                      )
-                    }
-                  )}
+                    return (
+                      <Table.Tr key={period}>
+                        <Table.Td fw={700}>{period}</Table.Td>
+                        <Table.Td>{data.gr[period]}</Table.Td>
+                        <Table.Td>{data.sr[period]}</Table.Td>
+                        <Table.Td>{pohPrev}</Table.Td>
+                        <Table.Td>{data.nr[period]}</Table.Td>
+                        <Table.Td>{data.pop[period]}</Table.Td>
+                        <Table.Td>{data.poh[period]}</Table.Td>
+                      </Table.Tr>
+                    )
+                  })}
                 </Table.Tbody>
               </Table>
 
               <Paper p="sm" withBorder>
                 <Text size="sm">
-                  POP = &Sigma;NR over {data.poqValue} periods (or remaining
-                  periods if fewer)
+                  POP = &Sigma;NR over {data.poqValue} periods (or remaining periods if fewer)
                 </Text>
                 <Text size="sm">
                   POH = POH<sub>prev</sub> + SR + POP &minus; GR
@@ -365,15 +339,13 @@ ${part.inventoryRecord.holdingCost}
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => (
-                      <Table.Tr key={period}>
-                        <Table.Td>{period}</Table.Td>
-                        <Table.Td>{data.pop[period]}</Table.Td>
-                        <Table.Td>{data.por[period]}</Table.Td>
-                      </Table.Tr>
-                    )
-                  )}
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => (
+                    <Table.Tr key={period}>
+                      <Table.Td>{period}</Table.Td>
+                      <Table.Td>{data.pop[period]}</Table.Td>
+                      <Table.Td>{data.por[period]}</Table.Td>
+                    </Table.Tr>
+                  ))}
                 </Table.Tbody>
               </Table>
             </Stack>
@@ -400,9 +372,7 @@ ${part.inventoryRecord.holdingCost}
                     </Table.Tr>
                     <Table.Tr>
                       <Table.Td fw={700}>Total Inventory (POH)</Table.Td>
-                      <Table.Td>
-                        {data.poh.reduce((a, b) => a + b, 0)}
-                      </Table.Td>
+                      <Table.Td>{data.poh.reduce((a, b) => a + b, 0)}</Table.Td>
                     </Table.Tr>
                   </Table.Tbody>
                 </Table>
@@ -420,9 +390,7 @@ ${part.inventoryRecord.holdingCost}
             Previous
           </Button>
           <Button
-            onClick={() =>
-              setActiveStep((prev) => Math.min(totalSteps - 1, prev + 1))
-            }
+            onClick={() => setActiveStep((prev) => Math.min(totalSteps - 1, prev + 1))}
             disabled={activeStep === totalSteps - 1}
           >
             Next

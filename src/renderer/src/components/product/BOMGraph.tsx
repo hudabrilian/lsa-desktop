@@ -43,7 +43,9 @@ export default function BOMGraph({ product }: { product: Product }): React.JSX.E
       lineWidth="2px"
       lineColor="royalblue"
     >
-      {transformedData.children?.map((child) => <PartNode key={child.name} part={child} />)}
+      {transformedData.children?.map((child) => (
+        <PartNode key={child.name} part={child} />
+      ))}
     </Tree>
   )
 }

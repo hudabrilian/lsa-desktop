@@ -207,7 +207,11 @@ export default function SummaryProductTab(): React.JSX.Element {
   function SRSection(): React.JSX.Element {
     console.log(product?.parts)
 
-    if (!product || product.parts.length < 2 || product.parts[0].inventoryRecord.scheduleReceipt.length < 1) {
+    if (
+      !product ||
+      product.parts.length < 2 ||
+      product.parts[0].inventoryRecord.scheduleReceipt.length < 1
+    ) {
       return <></>
     }
 

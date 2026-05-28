@@ -273,7 +273,8 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
             <Stack>
               <Title order={4}>Net Requirements (NR)</Title>
               <Text>
-                NR<sub>t</sub> = GR<sub>t</sub> &minus; SR<sub>t</sub> &minus; POH<sub>t&minus;1</sub>
+                NR<sub>t</sub> = GR<sub>t</sub> &minus; SR<sub>t</sub> &minus; POH
+                <sub>t&minus;1</sub>
               </Text>
               <Table highlightOnHover withColumnBorders withTableBorder>
                 <Table.Thead>
@@ -286,24 +287,20 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => {
-                      const pohPrev =
-                        period === 1
-                          ? part.inventoryRecord.onHand
-                          : data.poh[period - 1]
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => {
+                    const pohPrev =
+                      period === 1 ? part.inventoryRecord.onHand : data.poh[period - 1]
 
-                      return (
-                        <Table.Tr key={period}>
-                          <Table.Td fw={700}>{period}</Table.Td>
-                          <Table.Td>{data.gr[period]}</Table.Td>
-                          <Table.Td>{data.sr[period]}</Table.Td>
-                          <Table.Td>{pohPrev}</Table.Td>
-                          <Table.Td>{data.nr[period]}</Table.Td>
-                        </Table.Tr>
-                      )
-                    }
-                  )}
+                    return (
+                      <Table.Tr key={period}>
+                        <Table.Td fw={700}>{period}</Table.Td>
+                        <Table.Td>{data.gr[period]}</Table.Td>
+                        <Table.Td>{data.sr[period]}</Table.Td>
+                        <Table.Td>{pohPrev}</Table.Td>
+                        <Table.Td>{data.nr[period]}</Table.Td>
+                      </Table.Tr>
+                    )
+                  })}
                 </Table.Tbody>
               </Table>
             </Stack>
@@ -313,8 +310,7 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
             <Stack>
               <Title order={4}>Z Table — Cost Matrix</Title>
               <Text>
-                Z(c,e) is the total cost of ordering in period c to cover
-                periods c through e.
+                Z(c,e) is the total cost of ordering in period c to cover periods c through e.
               </Text>
               <Table highlightOnHover withColumnBorders withTableBorder>
                 <Table.Thead>
@@ -332,11 +328,7 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
                     <Table.Tr key={`z-${index}`}>
                       {row.map((value, index) => (
                         <Table.Td key={`z-${index}`}>
-                          {value > 0 ? (
-                            <NumberFormatter value={value} thousandSeparator />
-                          ) : (
-                            ''
-                          )}
+                          {value > 0 ? <NumberFormatter value={value} thousandSeparator /> : ''}
                         </Table.Td>
                       ))}
                     </Table.Tr>
@@ -345,12 +337,9 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
               </Table>
 
               <Paper p="sm" withBorder>
+                <Text size="sm">Z(c,c) = S = {part.inventoryRecord.orderCost}</Text>
                 <Text size="sm">
-                  Z(c,c) = S = {part.inventoryRecord.orderCost}
-                </Text>
-                <Text size="sm">
-                  Z(c,e) = (e &minus; c) × NR<sub>e</sub> × H + Z(c, e &minus;
-                  1)
+                  Z(c,e) = (e &minus; c) × NR<sub>e</sub> × H + Z(c, e &minus; 1)
                 </Text>
               </Paper>
             </Stack>
@@ -360,8 +349,8 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
             <Stack>
               <Title order={4}>F Table — Minimum Cost</Title>
               <Text>
-                F(c,e) = Z(c,e) + Fmin(c &minus; 1). The smallest F(c,e) for
-                each column e becomes Fmin(e) with R(e) = c.
+                F(c,e) = Z(c,e) + Fmin(c &minus; 1). The smallest F(c,e) for each column e becomes
+                Fmin(e) with R(e) = c.
               </Text>
               <Table highlightOnHover withColumnBorders withTableBorder>
                 <Table.Thead>
@@ -379,11 +368,7 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
                     <Table.Tr key={`f-${index}`}>
                       {row.map((value, index) => (
                         <Table.Td key={`f-${index}`}>
-                          {value > 0 ? (
-                            <NumberFormatter value={value} thousandSeparator />
-                          ) : (
-                            ''
-                          )}
+                          {value > 0 ? <NumberFormatter value={value} thousandSeparator /> : ''}
                         </Table.Td>
                       ))}
                     </Table.Tr>
@@ -392,12 +377,8 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
               </Table>
 
               <Paper p="sm" withBorder>
-                <Text size="sm">
-                  F(c,e) = Z(c,e) + Fmin(c &minus; 1)
-                </Text>
-                <Text size="sm">
-                  Fmin(e) = min F(c,e) across all c for column e
-                </Text>
+                <Text size="sm">F(c,e) = Z(c,e) + Fmin(c &minus; 1)</Text>
+                <Text size="sm">Fmin(e) = min F(c,e) across all c for column e</Text>
               </Paper>
             </Stack>
           </Stepper.Step>
@@ -406,17 +387,14 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
             <Stack>
               <Title order={4}>Backtrack — Determining Order Periods</Title>
               <Text>
-                Starting from the last period, use R(e) to find where each order
-                is placed. R(e) gives the period c where an order covers up to
-                period e.
+                Starting from the last period, use R(e) to find where each order is placed. R(e)
+                gives the period c where an order covers up to period e.
               </Text>
               <Paper p="sm" withBorder>
                 <Text size="sm">
                   POP<sub>R(e)</sub> = &Sigma;NR from R(e) to e
                 </Text>
-                <Text size="sm">
-                  Then set e = R(e) &minus; 1 and repeat until e &lt; 1.
-                </Text>
+                <Text size="sm">Then set e = R(e) &minus; 1 and repeat until e &lt; 1.</Text>
               </Paper>
             </Stack>
           </Stepper.Step>
@@ -434,16 +412,14 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => (
-                      <Table.Tr key={period}>
-                        <Table.Td fw={700}>{period}</Table.Td>
-                        <Table.Td>{data.pop[period]}</Table.Td>
-                        <Table.Td>{data.poh[period]}</Table.Td>
-                        <Table.Td>{data.por[period]}</Table.Td>
-                      </Table.Tr>
-                    )
-                  )}
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => (
+                    <Table.Tr key={period}>
+                      <Table.Td fw={700}>{period}</Table.Td>
+                      <Table.Td>{data.pop[period]}</Table.Td>
+                      <Table.Td>{data.poh[period]}</Table.Td>
+                      <Table.Td>{data.por[period]}</Table.Td>
+                    </Table.Tr>
+                  ))}
                 </Table.Tbody>
               </Table>
 
@@ -471,9 +447,7 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
                     </Table.Tr>
                     <Table.Tr>
                       <Table.Td fw={700}>Total Inventory (POH)</Table.Td>
-                      <Table.Td>
-                        {data.poh.reduce((a, b) => a + b, 0)}
-                      </Table.Td>
+                      <Table.Td>{data.poh.reduce((a, b) => a + b, 0)}</Table.Td>
                     </Table.Tr>
                   </Table.Tbody>
                 </Table>
@@ -491,9 +465,7 @@ export default function WWATable({ part }: { part: Part }): React.JSX.Element {
             Previous
           </Button>
           <Button
-            onClick={() =>
-              setActiveStep((prev) => Math.min(totalSteps - 1, prev + 1))
-            }
+            onClick={() => setActiveStep((prev) => Math.min(totalSteps - 1, prev + 1))}
             disabled={activeStep === totalSteps - 1}
           >
             Next

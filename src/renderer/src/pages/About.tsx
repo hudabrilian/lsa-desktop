@@ -4,16 +4,16 @@ import { useState, useEffect } from 'react'
 
 export default function AboutPage(): React.JSX.Element {
   const [version, setVersion] = useState<string>('')
-  
-    useEffect(() => {
-      const fetchVersion = async (): Promise<void> => {
-        const version = await window.api.getVersion()
-        setVersion(version)
-      }
-  
-      fetchVersion()
-    }, [])
-    
+
+  useEffect(() => {
+    const fetchVersion = async (): Promise<void> => {
+      const version = await window.api.getVersion()
+      setVersion(version)
+    }
+
+    fetchVersion()
+  }, [])
+
   return (
     <Container size="md" py="xl">
       <Title order={1} mb="xs">

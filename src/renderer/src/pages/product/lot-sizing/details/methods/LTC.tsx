@@ -235,7 +235,8 @@ export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
             <Stack>
               <Title order={4}>Net Requirements (NR)</Title>
               <Text>
-                NR<sub>t</sub> = GR<sub>t</sub> &minus; SR<sub>t</sub> &minus; POH<sub>t&minus;1</sub>
+                NR<sub>t</sub> = GR<sub>t</sub> &minus; SR<sub>t</sub> &minus; POH
+                <sub>t&minus;1</sub>
               </Text>
               <Table highlightOnHover withColumnBorders withTableBorder>
                 <Table.Thead>
@@ -248,24 +249,20 @@ export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => {
-                      const pohPrev =
-                        period === 1
-                          ? part.inventoryRecord.onHand
-                          : data.poh[period - 1]
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => {
+                    const pohPrev =
+                      period === 1 ? part.inventoryRecord.onHand : data.poh[period - 1]
 
-                      return (
-                        <Table.Tr key={period}>
-                          <Table.Td fw={700}>{period}</Table.Td>
-                          <Table.Td>{data.gr[period]}</Table.Td>
-                          <Table.Td>{data.sr[period]}</Table.Td>
-                          <Table.Td>{pohPrev}</Table.Td>
-                          <Table.Td>{data.nr[period]}</Table.Td>
-                        </Table.Tr>
-                      )
-                    }
-                  )}
+                    return (
+                      <Table.Tr key={period}>
+                        <Table.Td fw={700}>{period}</Table.Td>
+                        <Table.Td>{data.gr[period]}</Table.Td>
+                        <Table.Td>{data.sr[period]}</Table.Td>
+                        <Table.Td>{pohPrev}</Table.Td>
+                        <Table.Td>{data.nr[period]}</Table.Td>
+                      </Table.Tr>
+                    )
+                  })}
                 </Table.Tbody>
               </Table>
             </Stack>
@@ -275,8 +272,8 @@ export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
             <Stack>
               <Title order={4}>LTC Trial Periods</Title>
               <Text>
-                For each trial, the algorithm computes cumulative demand,
-                holding costs, and Total Cost per Period (TCP).
+                For each trial, the algorithm computes cumulative demand, holding costs, and Total
+                Cost per Period (TCP).
               </Text>
               <Table highlightOnHover withColumnBorders withTableBorder>
                 <Table.Thead>
@@ -315,21 +312,11 @@ export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
               </Table>
 
               <SimpleGrid cols={2} my={10}>
-                <Text size="sm">
-                  D = NR at period n + T &minus; 1
-                </Text>
-                <Text size="sm">
-                  Cum. D = &Sigma;D
-                </Text>
-                <Text size="sm">
-                  Inc. HC = (T &minus; 1) × D × H
-                </Text>
-                <Text size="sm">
-                  Cum. HC = &Sigma; Inc. HC
-                </Text>
-                <Text size="sm">
-                  TCP = (S + Cum. HC) / T
-                </Text>
+                <Text size="sm">D = NR at period n + T &minus; 1</Text>
+                <Text size="sm">Cum. D = &Sigma;D</Text>
+                <Text size="sm">Inc. HC = (T &minus; 1) × D × H</Text>
+                <Text size="sm">Cum. HC = &Sigma; Inc. HC</Text>
+                <Text size="sm">TCP = (S + Cum. HC) / T</Text>
               </SimpleGrid>
             </Stack>
           </Stepper.Step>
@@ -338,8 +325,8 @@ export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
             <Stack>
               <Title order={4}>Order Decision Rule</Title>
               <Text>
-                Place an order when TCP<sub>T</sub> &gt; TCP<sub>T&minus;1</sub>
-                , covering demand up to T &minus; 1.
+                Place an order when TCP<sub>T</sub> &gt; TCP<sub>T&minus;1</sub>, covering demand up
+                to T &minus; 1.
               </Text>
               <Text size="sm" c="dimmed">
                 POP = Cum. D at the period before TCP increases.
@@ -363,26 +350,22 @@ export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => {
-                      const pohPrev =
-                        period === 1
-                          ? part.inventoryRecord.onHand
-                          : data.poh[period - 1]
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => {
+                    const pohPrev =
+                      period === 1 ? part.inventoryRecord.onHand : data.poh[period - 1]
 
-                      return (
-                        <Table.Tr key={period}>
-                          <Table.Td fw={700}>{period}</Table.Td>
-                          <Table.Td>{data.gr[period]}</Table.Td>
-                          <Table.Td>{data.sr[period]}</Table.Td>
-                          <Table.Td>{pohPrev}</Table.Td>
-                          <Table.Td>{data.nr[period]}</Table.Td>
-                          <Table.Td>{data.pop[period]}</Table.Td>
-                          <Table.Td>{data.poh[period]}</Table.Td>
-                        </Table.Tr>
-                      )
-                    }
-                  )}
+                    return (
+                      <Table.Tr key={period}>
+                        <Table.Td fw={700}>{period}</Table.Td>
+                        <Table.Td>{data.gr[period]}</Table.Td>
+                        <Table.Td>{data.sr[period]}</Table.Td>
+                        <Table.Td>{pohPrev}</Table.Td>
+                        <Table.Td>{data.nr[period]}</Table.Td>
+                        <Table.Td>{data.pop[period]}</Table.Td>
+                        <Table.Td>{data.poh[period]}</Table.Td>
+                      </Table.Tr>
+                    )
+                  })}
                 </Table.Tbody>
               </Table>
 
@@ -410,15 +393,13 @@ export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {Array.from({ length: product.period }, (_, i) => i + 1).map(
-                    (period) => (
-                      <Table.Tr key={period}>
-                        <Table.Td>{period}</Table.Td>
-                        <Table.Td>{data.pop[period]}</Table.Td>
-                        <Table.Td>{data.por[period]}</Table.Td>
-                      </Table.Tr>
-                    )
-                  )}
+                  {Array.from({ length: product.period }, (_, i) => i + 1).map((period) => (
+                    <Table.Tr key={period}>
+                      <Table.Td>{period}</Table.Td>
+                      <Table.Td>{data.pop[period]}</Table.Td>
+                      <Table.Td>{data.por[period]}</Table.Td>
+                    </Table.Tr>
+                  ))}
                 </Table.Tbody>
               </Table>
             </Stack>
@@ -436,9 +417,7 @@ export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
                     </Table.Tr>
                     <Table.Tr>
                       <Table.Td fw={700}>Total Inventory (POH)</Table.Td>
-                      <Table.Td>
-                        {data.poh.reduce((a, b) => a + b, 0)}
-                      </Table.Td>
+                      <Table.Td>{data.poh.reduce((a, b) => a + b, 0)}</Table.Td>
                     </Table.Tr>
                   </Table.Tbody>
                 </Table>
@@ -456,9 +435,7 @@ export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
             Previous
           </Button>
           <Button
-            onClick={() =>
-              setActiveStep((prev) => Math.min(totalSteps - 1, prev + 1))
-            }
+            onClick={() => setActiveStep((prev) => Math.min(totalSteps - 1, prev + 1))}
             disabled={activeStep === totalSteps - 1}
           >
             Next

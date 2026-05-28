@@ -170,15 +170,15 @@ export default function PartForm({ product }: { product: Product }): React.JSX.E
                       amount: 1,
                       level: parseInt(activeTab!),
                       parent: '',
-                        inventoryRecord: {
-                          onHand: 0,
-                          leadTime: 0,
-                          orderCost: 0,
-                          holdingCost: 0,
-                          orderQuantity: 100,
-                          orderPeriod: 1,
-                          scheduleReceipt: []
-                        }
+                      inventoryRecord: {
+                        onHand: 0,
+                        leadTime: 0,
+                        orderCost: 0,
+                        holdingCost: 0,
+                        orderQuantity: 100,
+                        orderPeriod: 1,
+                        scheduleReceipt: []
+                      }
                     })
                   }}
                 >
