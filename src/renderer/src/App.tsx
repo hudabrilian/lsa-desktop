@@ -9,6 +9,7 @@ import AppLayout from './layouts/AppLayout'
 import ProductDetailLayout from './layouts/ProductDetailLayout'
 import ProductLayout from './layouts/ProductLayout'
 import AboutPage from './pages/About'
+import ChangelogPage from './pages/Changelog'
 import GuidePage from './pages/Guide'
 import HistoryPage from './pages/History'
 import HomePage from './pages/Home'
@@ -39,6 +40,10 @@ export default function App(): React.JSX.Element {
           {
             path: '/history',
             element: <HistoryPage />
+          },
+          {
+            path: '/changelog',
+            element: <ChangelogPage />
           },
           {
             path: '/product',

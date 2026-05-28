@@ -1,5 +1,5 @@
 import { NavLink } from '@mantine/core'
-import { Book, CalendarClock, Home, Info, List } from 'lucide-react'
+import { Book, CalendarClock, GitCommitHorizontal, Home, Info, List } from 'lucide-react'
 import { ReactNode } from 'react'
 import { NavLink as NavLinkRouter, useLocation } from 'react-router-dom'
 
@@ -38,6 +38,12 @@ const navList: {
     label: 'History',
     icon: <CalendarClock size="1.3rem" strokeWidth={1.5} />,
     disabled: true
+  },
+  {
+    href: '/changelog',
+    label: 'Changelog',
+    icon: <GitCommitHorizontal size="1.3rem" strokeWidth={1.5} />,
+    disabled: false
   }
 ]
 
