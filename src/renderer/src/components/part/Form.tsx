@@ -1,6 +1,7 @@
 import { Button, Group, NativeSelect, NumberInput, Stack, Tabs, TextInput } from '@mantine/core'
 import { hasLength, useForm } from '@mantine/form'
 import { notifications } from '@mantine/notifications'
+import { useUnsavedChanges } from '@renderer/hooks/useUnsavedChanges'
 import { useProductContext } from '@renderer/context/ProductContext'
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
@@ -47,6 +48,8 @@ export default function PartForm({ product }: { product: Product }): React.JSX.E
       }
     }
   })
+
+  useUnsavedChanges(form.isDirty())
 
   const submitHandler = async (values: { parts: Part[] }): Promise<void> => {
     product.parts = values.parts

@@ -8,6 +8,27 @@ const changelogData: {
   color: string
 }[] = [
   {
+    version: 'v0.0.7',
+    date: '2026-05-29',
+    color: 'blue',
+    items: [
+      'feat: add form navigation confirmation (unsaved changes warning)',
+      'feat: add vitest test suite with 94 tests for MRP calculations',
+      'fix: repair LFL formula using poh[i] instead of poh[i-1]',
+      'fix: scheduleReceipt padding bug in all lot-sizing methods',
+      'fix: remove electron mirror config for reliable CI builds'
+    ]
+  },
+  {
+    version: 'v0.0.6',
+    date: '2026-05-29',
+    color: 'cyan',
+    items: [
+      'feat: standardize all UI language to English',
+      'feat: improve UX consistency across product tabs'
+    ]
+  },
+  {
     version: 'v0.0.5',
     date: '2026-05-29',
     color: 'blue',

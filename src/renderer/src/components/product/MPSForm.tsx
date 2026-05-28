@@ -1,6 +1,7 @@
 import { Box, Button, NumberInput, SimpleGrid, Tooltip } from '@mantine/core'
 import { isNotEmpty, useForm } from '@mantine/form'
 import { notifications } from '@mantine/notifications'
+import { useUnsavedChanges } from '@renderer/hooks/useUnsavedChanges'
 import { Product } from 'src/preload/types'
 
 export default function MPSForm({ product }: { product: Product }): React.JSX.Element {
@@ -15,6 +16,8 @@ export default function MPSForm({ product }: { product: Product }): React.JSX.El
       data: isNotEmpty('MPS data must be greater than 0')
     }
   })
+
+  useUnsavedChanges(form.isDirty())
 
   const submitHandler = async (values: { data: number[] }): Promise<void> => {
     product.mps = values.data

@@ -15,6 +15,7 @@ import {
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { notifications } from '@mantine/notifications'
+import { useUnsavedChanges } from '@renderer/hooks/useUnsavedChanges'
 import { Link } from 'react-router-dom'
 import { Part, Product } from 'src/preload/types'
 
@@ -70,6 +71,8 @@ export default function InventoryRecordForm({ product }: { product: Product }): 
       }))
     }
   })
+
+  useUnsavedChanges(form.isDirty())
 
   const inventoryRecordFields = (level: number): React.JSX.Element[] => {
     return form

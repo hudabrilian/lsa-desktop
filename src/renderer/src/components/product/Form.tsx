@@ -1,6 +1,7 @@
 import { Button, Group, NumberInput, Stack, TextInput } from '@mantine/core'
 import { hasLength, useForm } from '@mantine/form'
 import { notifications } from '@mantine/notifications'
+import { useUnsavedChanges } from '@renderer/hooks/useUnsavedChanges'
 import { nanoid } from 'nanoid'
 import { useNavigate } from 'react-router-dom'
 import { Product } from 'src/preload/types'
@@ -28,6 +29,8 @@ export default function ProductForm({ product }: { product?: Product }): React.J
       lowestLevel: (value) => (value < 1 ? 'Lowest level must be greater than 1' : null)
     }
   })
+
+  useUnsavedChanges(form.isDirty())
 
   const submitHandler = async (values: Product): Promise<void> => {
     if (product) {
