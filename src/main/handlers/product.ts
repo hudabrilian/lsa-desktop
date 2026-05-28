@@ -75,5 +75,5 @@ export const deleteAllProducts = (): void => {
 }
 
 export const openDirectory = (): void => {
-  shell.openPath(`${userDataPath}\\data`)
+  shell.openPath(`${userDataPath}\\data\\`)
 }

@@ -205,7 +205,9 @@ export default function SummaryProductTab(): JSX.Element {
   }
 
   function SRSection(): JSX.Element {
-    if (!product || product.parts.length < 2) {
+    console.log(product?.parts)
+
+    if (!product || product.parts.length < 2 || product.parts[0].inventoryRecord.scheduleReceipt.length < 1) {
       return <></>
     }
 

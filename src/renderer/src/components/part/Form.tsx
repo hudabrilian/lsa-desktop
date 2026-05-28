@@ -169,16 +169,16 @@ export default function PartForm({ product }: { product: Product }): JSX.Element
                       name: '',
                       amount: 1,
                       level: parseInt(activeTab!),
-                      parent: ''
-                      //   inventoryRecord: {
-                      //     onHand: 0,
-                      //     leadTime: 0,
-                      //     biayaPesan: 0,
-                      //     biayaSimpan: 0,
-                      //     orderQuantity: 100,
-                      //     periodeOrder: 1,
-                      //     scheduleReceipt: []
-                      //   }
+                      parent: '',
+                        inventoryRecord: {
+                          onHand: 0,
+                          leadTime: 0,
+                          biayaPesan: 0,
+                          biayaSimpan: 0,
+                          orderQuantity: 100,
+                          periodeOrder: 1,
+                          scheduleReceipt: []
+                        }
                     })
                   }}
                 >
