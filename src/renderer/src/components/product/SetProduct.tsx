@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useProductContext } from '../../context/ProductContext'
 
-export default function SetProduct(): JSX.Element {
+export default function SetProduct(): React.JSX.Element {
   const { id } = useParams()
   const { product, setProductData, setIsLoading } = useProductContext()
 

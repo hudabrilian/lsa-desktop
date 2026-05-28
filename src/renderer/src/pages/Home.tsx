@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import classes from '@renderer/assets/home.module.css'
 import { Dots } from '@renderer/components/Dots'
 
-export default function HomePage(): JSX.Element {
+export default function HomePage(): React.JSX.Element {
   return (
     <Container className={classes.wrapper} size={1400}>
       <Dots className={classes.dots} style={{ left: 0, top: 0 }} />

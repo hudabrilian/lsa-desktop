@@ -3,7 +3,7 @@ export interface DotsProps extends React.ComponentPropsWithoutRef<'svg'> {
   radius?: number
 }
 
-export function Dots({ size = 185, radius = 2.5, ...others }: DotsProps): JSX.Element {
+export function Dots({ size = 185, radius = 2.5, ...others }: DotsProps): React.JSX.Element {
   return (
     <svg
       aria-hidden

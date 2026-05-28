@@ -3,7 +3,7 @@ import { useDisclosure } from '@mantine/hooks'
 import { notifications } from '@mantine/notifications'
 import { useEffect, useState } from 'react'
 
-export default function UpdateNotification(): JSX.Element {
+export default function UpdateNotification(): React.JSX.Element {
   const [autoUpdateErrorMessage, setAutoUpdateErrorMessage] = useState<string | null>(null)
   const [showUpdateIsInstalling, setShowUpdateIsInstalling] = useState<boolean>(false)
   const [showUpdateIsDownloaded, setShowUpdateIsDownloaded] = useState<boolean>(false)

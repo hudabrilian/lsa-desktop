@@ -18,7 +18,7 @@ import { notifications } from '@mantine/notifications'
 import { Link } from 'react-router-dom'
 import { Part, Product } from 'src/preload/types'
 
-export default function InventoryRecordForm({ product }: { product: Product }): JSX.Element {
+export default function InventoryRecordForm({ product }: { product: Product }): React.JSX.Element {
   if (product.parts.length < 2) {
     return (
       <Center>
@@ -71,7 +71,7 @@ export default function InventoryRecordForm({ product }: { product: Product }): 
     }
   })
 
-  const inventoryRecordFields = (level: number): JSX.Element[] => {
+  const inventoryRecordFields = (level: number): React.JSX.Element[] => {
     return form
       .getValues()
       .data.filter((part) => part.level === level)
@@ -208,7 +208,7 @@ export default function InventoryRecordForm({ product }: { product: Product }): 
       })
   }
 
-  const scheduleReceiptFields = (level: number): JSX.Element[] => {
+  const scheduleReceiptFields = (level: number): React.JSX.Element[] => {
     return form
       .getValues()
       .data.filter((part) => part.level === level)

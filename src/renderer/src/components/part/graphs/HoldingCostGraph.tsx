@@ -8,7 +8,7 @@ export default function HoldingCostGraph({
     method: string
     Cost: number
   }[]
-}): JSX.Element {
+}): React.JSX.Element {
   const minimumCost = data.filter((d) => d.Cost === Math.min(...data.map((item) => item.Cost)))
 
   return (

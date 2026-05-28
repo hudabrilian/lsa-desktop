@@ -2,7 +2,7 @@ import { Paper, Table, Text } from '@mantine/core'
 import { useProductContext } from '@renderer/context/ProductContext'
 import { MRPTableData } from '@renderer/types'
 
-export default function MRPTablePage({ data }: { data: MRPTableData }): JSX.Element {
+export default function MRPTablePage({ data }: { data: MRPTableData }): React.JSX.Element {
   const { product } = useProductContext()
 
   if (!product) {

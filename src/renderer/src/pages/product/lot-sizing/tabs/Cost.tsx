@@ -5,7 +5,7 @@ import { useProductContext } from '@renderer/context/ProductContext'
 import { recapCostData } from '@renderer/utils/mrp'
 import { Link } from 'react-router-dom'
 
-export default function CostProductTab(): JSX.Element {
+export default function CostProductTab(): React.JSX.Element {
   const { product, isLoading } = useProductContext()
 
   if (isLoading) {

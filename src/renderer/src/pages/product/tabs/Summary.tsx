@@ -16,7 +16,7 @@ import ProductSkeleton from '@renderer/components/ProductSkeleton'
 import { useProductContext } from '@renderer/context/ProductContext'
 import { Link } from 'react-router-dom'
 
-export default function SummaryProductTab(): JSX.Element {
+export default function SummaryProductTab(): React.JSX.Element {
   const { product, isLoading } = useProductContext()
 
   if (isLoading) {
@@ -27,7 +27,7 @@ export default function SummaryProductTab(): JSX.Element {
     return <div>Product not found</div>
   }
 
-  function InfoSection(): JSX.Element {
+  function InfoSection(): React.JSX.Element {
     if (!product) {
       return <></>
     }
@@ -72,7 +72,7 @@ export default function SummaryProductTab(): JSX.Element {
     )
   }
 
-  function BOMSection(): JSX.Element {
+  function BOMSection(): React.JSX.Element {
     if (!product) {
       return <></>
     }
@@ -89,7 +89,7 @@ export default function SummaryProductTab(): JSX.Element {
     )
   }
 
-  function MPSSection(): JSX.Element {
+  function MPSSection(): React.JSX.Element {
     if (!product) {
       return <></>
     }
@@ -134,7 +134,7 @@ export default function SummaryProductTab(): JSX.Element {
     )
   }
 
-  function IRSection(): JSX.Element {
+  function IRSection(): React.JSX.Element {
     if (!product || product.parts.length < 2) {
       return <></>
     }
@@ -204,7 +204,7 @@ export default function SummaryProductTab(): JSX.Element {
     )
   }
 
-  function SRSection(): JSX.Element {
+  function SRSection(): React.JSX.Element {
     console.log(product?.parts)
 
     if (!product || product.parts.length < 2 || product.parts[0].inventoryRecord.scheduleReceipt.length < 1) {

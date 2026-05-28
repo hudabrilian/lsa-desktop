@@ -3,7 +3,7 @@ import { useProductContext } from '@renderer/context/ProductContext'
 import { selectedPOR } from '@renderer/utils/mrp'
 import { Part } from 'src/preload/types'
 
-export default function SelectedPORTab({ part }: { part: Part }): JSX.Element {
+export default function SelectedPORTab({ part }: { part: Part }): React.JSX.Element {
   const { product } = useProductContext()
 
   if (!product) {

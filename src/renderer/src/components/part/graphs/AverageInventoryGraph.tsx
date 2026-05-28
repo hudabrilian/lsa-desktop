@@ -8,7 +8,7 @@ export default function AverageInventoryGraph({
     method: string
     Unit: number
   }[]
-}): JSX.Element {
+}): React.JSX.Element {
   const minimumCost = data.filter((d) => d.Unit === Math.min(...data.map((item) => item.Unit)))
 
   return (

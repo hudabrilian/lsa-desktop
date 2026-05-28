@@ -3,7 +3,7 @@ import InventoryRecordForm from '@renderer/components/product/IRForm'
 import ProductSkeleton from '@renderer/components/ProductSkeleton'
 import { useProductContext } from '@renderer/context/ProductContext'
 
-export default function InventoryRecordProductPage(): JSX.Element {
+export default function InventoryRecordProductPage(): React.JSX.Element {
   const { product, isLoading } = useProductContext()
 
   if (isLoading) {

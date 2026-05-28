@@ -4,7 +4,7 @@ import { ProductProvider, useProductContext } from '@renderer/context/ProductCon
 import { ArrowLeft } from 'lucide-react'
 import { Link, Outlet } from 'react-router-dom'
 
-export default function ProductDetailLayout(): JSX.Element {
+export default function ProductDetailLayout(): React.JSX.Element {
   return (
     <ProductProvider>
       <SetProduct />
@@ -16,7 +16,7 @@ export default function ProductDetailLayout(): JSX.Element {
   )
 }
 
-export function ProductDetailHeader(): JSX.Element {
+export function ProductDetailHeader(): React.JSX.Element {
   const { product } = useProductContext()
 
   if (!product) {

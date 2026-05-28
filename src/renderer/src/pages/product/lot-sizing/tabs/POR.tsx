@@ -5,7 +5,7 @@ import { useProductContext } from '@renderer/context/ProductContext'
 import { recapPORData } from '@renderer/utils/mrp'
 import { Link } from 'react-router-dom'
 
-export default function PORProductTab(): JSX.Element {
+export default function PORProductTab(): React.JSX.Element {
   const { product, isLoading } = useProductContext()
   if (isLoading) {
     return <ProductSkeleton />

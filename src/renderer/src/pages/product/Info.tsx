@@ -7,7 +7,7 @@ import MPSProductTab from './tabs/MPS'
 import InventoryRecordProductPage from './tabs/IR'
 import SummaryProductTab from './tabs/Summary'
 
-export default function ProductInfoPage(): JSX.Element {
+export default function ProductInfoPage(): React.JSX.Element {
   const { id, tabValue } = useParams()
   const navigate = useNavigate()
 

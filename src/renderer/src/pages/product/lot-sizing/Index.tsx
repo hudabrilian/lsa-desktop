@@ -6,7 +6,7 @@ import PORProductTab from './tabs/POR'
 import CostProductTab from './tabs/Cost'
 import BOMProductTab from './tabs/BOM'
 
-export default function ProductLotSizingPage(): JSX.Element {
+export default function ProductLotSizingPage(): React.JSX.Element {
   const { id, tabValue } = useParams()
   const navigate = useNavigate()
   const { product } = useProductContext()

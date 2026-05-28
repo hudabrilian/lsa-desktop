@@ -3,7 +3,7 @@ import { useProductContext } from '@renderer/context/ProductContext'
 import { exploding } from '@renderer/utils/mrp'
 import { Part } from 'src/preload/types'
 
-export default function ExplodingTab({ part }: { part: Part }): JSX.Element {
+export default function ExplodingTab({ part }: { part: Part }): React.JSX.Element {
   const { product } = useProductContext()
 
   if (!product) {

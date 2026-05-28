@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid'
 import { useState } from 'react'
 import { Part, Product } from 'src/preload/types'
 
-export default function PartForm({ product }: { product: Product }): JSX.Element {
+export default function PartForm({ product }: { product: Product }): React.JSX.Element {
   const [activeTab, setActiveTab] = useState<string | null>('0')
   const { setProductData } = useProductContext()
 
@@ -173,10 +173,10 @@ export default function PartForm({ product }: { product: Product }): JSX.Element
                         inventoryRecord: {
                           onHand: 0,
                           leadTime: 0,
-                          biayaPesan: 0,
-                          biayaSimpan: 0,
+                          orderCost: 0,
+                          holdingCost: 0,
                           orderQuantity: 100,
-                          periodeOrder: 1,
+                          orderPeriod: 1,
                           scheduleReceipt: []
                         }
                     })

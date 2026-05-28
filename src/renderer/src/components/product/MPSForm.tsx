@@ -3,7 +3,7 @@ import { isNotEmpty, useForm } from '@mantine/form'
 import { notifications } from '@mantine/notifications'
 import { Product } from 'src/preload/types'
 
-export default function MPSForm({ product }: { product: Product }): JSX.Element {
+export default function MPSForm({ product }: { product: Product }): React.JSX.Element {
   const form = useForm<{
     data: number[]
   }>({

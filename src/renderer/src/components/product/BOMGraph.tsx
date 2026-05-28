@@ -5,7 +5,7 @@ import { Tree, TreeNode } from 'react-organizational-chart'
 import { Link } from 'react-router-dom'
 import { Part, Product } from 'src/preload/types'
 
-export default function BOMGraph({ product }: { product: Product }): JSX.Element {
+export default function BOMGraph({ product }: { product: Product }): React.JSX.Element {
   if (product.parts.length < 2) {
     return (
       <Center>
@@ -48,7 +48,7 @@ export default function BOMGraph({ product }: { product: Product }): JSX.Element
   )
 }
 
-function PartNode({ part }: { part: DataTransform | undefined }): JSX.Element {
+function PartNode({ part }: { part: DataTransform | undefined }): React.JSX.Element {
   if (!part) {
     return <></>
   }
@@ -73,7 +73,7 @@ const PartBlock = ({
   id: string
   name: string
   amount?: number
-}): JSX.Element => {
+}): React.JSX.Element => {
   const product = useProductContext().product
 
   if (!product) return <></>

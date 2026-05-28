@@ -7,7 +7,7 @@ import { FPR } from '@renderer/utils/mrp'
 import { useEffect, useState } from 'react'
 import { Part } from 'src/preload/types'
 
-export default function FPRTable({ part }: { part: Part }): JSX.Element {
+export default function FPRTable({ part }: { part: Part }): React.JSX.Element {
   const { product } = useProductContext()
   const [data, setData] = useState<MRPTableData>()
 

@@ -15,7 +15,7 @@ import PPBTable from './methods/PPB'
 import WWATable from './methods/WWA'
 import SelectedPORTab from './SelectedPOR'
 
-export default function ProductLotSizingDetailPage(): JSX.Element {
+export default function ProductLotSizingDetailPage(): React.JSX.Element {
   const { id, partId, tab2Value } = useParams()
   const navigate = useNavigate()
   const { product } = useProductContext()

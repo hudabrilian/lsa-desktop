@@ -3,7 +3,7 @@ import ProductForm from '@renderer/components/product/Form'
 import ProductSkeleton from '@renderer/components/ProductSkeleton'
 import { useProductContext } from '@renderer/context/ProductContext'
 
-export default function DetailProductTab(): JSX.Element {
+export default function DetailProductTab(): React.JSX.Element {
   const { product, isLoading } = useProductContext()
 
   if (isLoading) {

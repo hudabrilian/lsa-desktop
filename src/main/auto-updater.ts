@@ -1,9 +1,8 @@
-import electronUpdater, { type AppUpdater } from 'electron-updater'
+import { autoUpdater, type AppUpdater } from 'electron-updater'
 import log from 'electron-log'
 import { app, ipcMain } from 'electron'
 
 export function getAutoUpdater(): AppUpdater {
-  const { autoUpdater } = electronUpdater
   log.transports.file.level = 'debug'
   autoUpdater.logger = log
   return autoUpdater

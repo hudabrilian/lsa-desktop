@@ -3,7 +3,7 @@ import ProductSkeleton from '@renderer/components/ProductSkeleton'
 import { useProductContext } from '@renderer/context/ProductContext'
 import { Link } from 'react-router-dom'
 
-export default function PartsProductTab(): JSX.Element {
+export default function PartsProductTab(): React.JSX.Element {
   const { product, isLoading } = useProductContext()
 
   if (isLoading) {

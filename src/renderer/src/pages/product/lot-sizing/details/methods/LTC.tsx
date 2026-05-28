@@ -8,7 +8,7 @@ import { LTC } from '@renderer/utils/mrp'
 import { useEffect, useState } from 'react'
 import { Part } from 'src/preload/types'
 
-export default function LTCTable({ part }: { part: Part }): JSX.Element {
+export default function LTCTable({ part }: { part: Part }): React.JSX.Element {
   const { product } = useProductContext()
   const [data, setData] = useState<
     MRPTableData & {

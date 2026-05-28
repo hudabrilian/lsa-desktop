@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid'
 import { useNavigate } from 'react-router-dom'
 import { Product } from 'src/preload/types'
 
-export default function ProductForm({ product }: { product?: Product }): JSX.Element {
+export default function ProductForm({ product }: { product?: Product }): React.JSX.Element {
   const navigate = useNavigate()
 
   const form = useForm<Product>({

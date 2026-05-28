@@ -41,7 +41,7 @@ const navList: {
   }
 ]
 
-export default function Navbar(): JSX.Element {
+export default function Navbar(): React.JSX.Element {
   const location = useLocation()
 
   return (

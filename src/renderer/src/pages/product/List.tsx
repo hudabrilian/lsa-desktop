@@ -2,7 +2,7 @@ import { Box, Button, Group, Title } from '@mantine/core'
 import ProductList from '@renderer/components/product/List'
 import { Link } from 'react-router-dom'
 
-export default function ListProductsPage(): JSX.Element {
+export default function ListProductsPage(): React.JSX.Element {
   const handleOpenDirectory = async (): Promise<void> => {
     window.api.products.openDirectory()
   }

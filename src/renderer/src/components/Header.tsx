@@ -7,7 +7,7 @@ export default function Header({
 }: {
   opened: boolean | undefined
   toggle: React.MouseEventHandler<HTMLButtonElement> | undefined
-}): JSX.Element {
+}): React.JSX.Element {
   return (
     <Group h="100%" px="md" justify="space-between">
       <Group>

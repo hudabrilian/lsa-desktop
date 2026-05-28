@@ -2,7 +2,7 @@ import { Group, Text } from '@mantine/core'
 import { Heart } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-export default function Footer(): JSX.Element {
+export default function Footer(): React.JSX.Element {
   const [version, setVersion] = useState<string>('')
 
   useEffect(() => {

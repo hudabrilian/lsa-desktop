@@ -3,7 +3,7 @@ import MPSForm from '@renderer/components/product/MPSForm'
 import ProductSkeleton from '@renderer/components/ProductSkeleton'
 import { useProductContext } from '@renderer/context/ProductContext'
 
-export default function MPSProductTab(): JSX.Element {
+export default function MPSProductTab(): React.JSX.Element {
   const { product, isLoading } = useProductContext()
 
   if (isLoading) {

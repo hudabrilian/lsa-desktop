@@ -1,7 +1,7 @@
 import { ActionIcon, useMantineColorScheme } from '@mantine/core'
 import { Moon, Sun } from 'lucide-react'
 
-export default function ModeToggle(): JSX.Element {
+export default function ModeToggle(): React.JSX.Element {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const isDark = colorScheme === 'dark'
 

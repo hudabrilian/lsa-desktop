@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Product } from 'src/preload/types'
 
-export default function ProductList(): JSX.Element {
+export default function ProductList(): React.JSX.Element {
   const [products, setProducts] = useState<Product[]>([])
   const [selProduct, setSelProduct] = useState<
     | {

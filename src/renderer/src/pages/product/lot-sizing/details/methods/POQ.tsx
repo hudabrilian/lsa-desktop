@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import Latex from 'react-latex-next'
 import { Part } from 'src/preload/types'
 
-export default function POQTable({ part }: { part: Part }): JSX.Element {
+export default function POQTable({ part }: { part: Part }): React.JSX.Element {
   const { product } = useProductContext()
   const [data, setData] = useState<MRPTableData & { demand: number; poqValue: number }>()
 

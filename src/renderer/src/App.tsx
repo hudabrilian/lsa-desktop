@@ -2,7 +2,9 @@ import { MantineProvider } from '@mantine/core'
 import { ModalsProvider } from '@mantine/modals'
 import { Notifications } from '@mantine/notifications'
 import { NavigationProgress } from '@mantine/nprogress'
+import React from 'react'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
+import UpdateNotification from './components/UpdateNotification'
 import AppLayout from './layouts/AppLayout'
 import ProductDetailLayout from './layouts/ProductDetailLayout'
 import ProductLayout from './layouts/ProductLayout'
@@ -15,9 +17,8 @@ import ProductInfoPage from './pages/product/Info'
 import ListProductsPage from './pages/product/List'
 import ProductLotSizingPage from './pages/product/lot-sizing/Index'
 import ProductLotSizingDetailPage from './pages/product/lot-sizing/details/Detail'
-import UpdateNotification from './components/UpdateNotification'
 
-export default function App(): JSX.Element {
+export default function App(): React.JSX.Element {
   const router = createHashRouter(
     [
       {

@@ -5,7 +5,7 @@ import Header from '@renderer/components/Header'
 import Navbar from '@renderer/components/Navbar'
 import { Outlet } from 'react-router-dom'
 
-export default function AppLayout(): JSX.Element {
+export default function AppLayout(): React.JSX.Element {
   const [opened, { toggle }] = useDisclosure()
 
   return (

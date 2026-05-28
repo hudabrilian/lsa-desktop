@@ -3,7 +3,7 @@ import PartForm from '@renderer/components/part/Form'
 import ProductSkeleton from '@renderer/components/ProductSkeleton'
 import { useProductContext } from '@renderer/context/ProductContext'
 
-export default function PartsProductPage(): JSX.Element {
+export default function PartsProductPage(): React.JSX.Element {
   const { product, isLoading } = useProductContext()
 
   if (isLoading) {

@@ -3,7 +3,7 @@ import BOMGraph from '@renderer/components/product/BOMGraph'
 import ProductSkeleton from '@renderer/components/ProductSkeleton'
 import { useProductContext } from '@renderer/context/ProductContext'
 
-export default function BOMProductTab(): JSX.Element {
+export default function BOMProductTab(): React.JSX.Element {
   const { product, isLoading } = useProductContext()
 
   if (isLoading) {
