@@ -26,13 +26,14 @@ export const LFL = ({ product, part }: { product: Product; part: Part }): MRPTab
 
   data.gr.push(...jip.map((j) => j * part.amount))
   data.sr.push(...ir.scheduleReceipt.map((i) => i.amount))
+  while (data.sr.length <= product.period) data.sr.push(0)
 
   data.poh[0] = ir.onHand
 
   for (let i = 1; i <= product.period; i++) {
-    data.nr[i] = data.gr[i] - data.sr[i] - data.poh[i]
+    data.nr[i] = data.gr[i] - data.sr[i] - data.poh[i - 1]
     data.pop[i] = data.nr[i]
-    data.poh[i] = data.sr[i] + data.pop[i] - data.gr[i]
+    data.poh[i] = data.poh[i - 1] + data.sr[i] + data.pop[i] - data.gr[i]
     data.frequency++
   }
 
@@ -82,6 +83,7 @@ export const EOQ = ({
 
   data.gr.push(...jip.map((j) => j * part.amount))
   data.sr.push(...ir.scheduleReceipt.map((i) => i.amount))
+  while (data.sr.length <= product.period) data.sr.push(0)
 
   const calcGr = data.gr.slice(1)
   const calcSr = data.sr.slice(1)
@@ -160,6 +162,7 @@ export const POQ = ({
 
   data.gr.push(...jip.map((j) => j * part.amount))
   data.sr.push(...ir.scheduleReceipt.map((i) => i.amount))
+  while (data.sr.length <= product.period) data.sr.push(0)
 
   for (let i = 1; i <= product.period; i++) {
     data.nr[i] = data.gr[i] - data.sr[i] - data.poh[i - 1]
@@ -225,6 +228,7 @@ export const FOQ = ({ product, part }: { product: Product; part: Part }): MRPTab
 
   data.gr.push(...jip.map((j) => j * part.amount))
   data.sr.push(...ir.scheduleReceipt.map((i) => i.amount))
+  while (data.sr.length <= product.period) data.sr.push(0)
 
   for (let i = 1; i <= product.period; i++) {
     const tempNr = data.gr[i] - data.sr[i] - data.poh[i - 1]
@@ -269,6 +273,7 @@ export const FPR = ({ product, part }: { product: Product; part: Part }): MRPTab
 
   data.gr.push(...jip.map((j) => j * part.amount))
   data.sr.push(...ir.scheduleReceipt.map((i) => i.amount))
+  while (data.sr.length <= product.period) data.sr.push(0)
 
   for (let i = 1; i <= product.period; i++) {
     const tempNr = data.gr[i] - data.sr[i] - data.poh[i - 1]
@@ -340,6 +345,7 @@ export const LUC = ({
 
   data.gr.push(...jip.map((j) => j * part.amount))
   data.sr.push(...ir.scheduleReceipt.map((i) => i.amount))
+  while (data.sr.length <= product.period) data.sr.push(0)
 
   for (let i = 1; i <= product.period; i++) {
     data.nr[i] = data.gr[i] - data.sr[i] - data.poh[i - 1]
@@ -478,6 +484,7 @@ export const LTC = ({
 
   data.gr.push(...jip.map((j) => j * part.amount))
   data.sr.push(...ir.scheduleReceipt.map((i) => i.amount))
+  while (data.sr.length <= product.period) data.sr.push(0)
 
   for (let i = 1; i <= product.period; i++) {
     const tempNr = data.gr[i] - data.sr[i] - data.poh[i - 1]
@@ -618,6 +625,7 @@ export const PPB = ({
 
   data.gr.push(...jip.map((j) => j * part.amount))
   data.sr.push(...ir.scheduleReceipt.map((i) => i.amount))
+  while (data.sr.length <= product.period) data.sr.push(0)
 
   for (let i = 1; i <= product.period; i++) {
     const tempNr = data.gr[i] - data.sr[i] - data.poh[i - 1]
@@ -746,6 +754,7 @@ export const WWA = ({
 
   data.gr.push(...jip.map((j) => j * part.amount))
   data.sr.push(...ir.scheduleReceipt.map((i) => i.amount))
+  while (data.sr.length <= product.period) data.sr.push(0)
 
   for (let i = 1; i <= product.period; i++) {
     const tempNr = data.gr[i] - data.sr[i] - data.poh[i - 1]

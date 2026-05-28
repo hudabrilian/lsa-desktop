@@ -11,6 +11,8 @@
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
     "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "typecheck": "pnpm typecheck:node && pnpm typecheck:web",
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
@@ -70,6 +72,7 @@
     "recharts": "^3.8.1",
     "typescript": "^5.9.3",
     "vite": "^8.0.14",
+    "vitest": "^4.1.7",
     "zustand": "^5.0.14"
   },
   "packageManager": "pnpm@9.12.3+sha1.4fb96925d434c491285182acf29803bb9aa2e6e5",
