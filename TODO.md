@@ -14,7 +14,7 @@ methods commonly used in Material Requirement Planning (MRP)
 - [x] Create folder structure for pages
 - [x] Setup routing for pages
   - [x] Home page
-  - [ ] About page
+  - [X] About page
   - [ ] Guide page
   - [ ] Product page
     - [x] List product page
@@ -29,26 +29,26 @@ methods commonly used in Material Requirement Planning (MRP)
       - [x] Calculation
         - [x] Exploding
         - [x] LFL
-          - [ ] Step by step
+          - [x] Step by step
         - [x] EOQ
-          - [ ] Step by step
+          - [x] Step by step
           - [x] Calculation value
         - [x] POQ
-          - [ ] Step by step
+          - [x] Step by step
           - [x] Calculation value
         - [x] FOQ
         - [x] FPR
         - [x] LUC
-          - [ ] Step by step
+          - [x] Step by step
           - [x] LUC Table
         - [x] LTC
-          - [ ] Step by step
+          - [x] Step by step
           - [x] LTC Table
         - [x] PPB
-          - [ ] Step by step
+          - [x] Step by step
           - [x] PPB Table
         - [x] WWA
-          - [ ] Step by step
+          - [x] Step by step
           - [x] Z and F table
         - [x] Cost recap
         - [x] Graphic recap
